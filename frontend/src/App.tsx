@@ -1,5 +1,5 @@
 import { FloatingShape } from "./components/FloatingShape";
-import { Navigate, replace, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import {
   Login,
   Signup,
@@ -24,29 +24,6 @@ function App() {
   }
   const { user, error, isAuthenticated, checkAuth, isCheckingAuth } =
     useAuthStore() as AuthState;
-
-  // Protect routes that require authentication
-  const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({
-    children,
-  }) => {
-    if (!isAuthenticated) {
-      return <Navigate to="/login" replace />;
-    }
-    if (!user?.isVerified) {
-      return <Navigate to="/verify-email" replace />;
-    }
-    return children;
-  };
-
-  // Redirect authenticated users to homepage
-  const RedirectAuthenticatedUser: React.FC<{ children: React.ReactNode }> = ({
-    children,
-  }) => {
-    if (isAuthenticated && user) {
-      return <Navigate to="/" replace />;
-    }
-    return children;
-  };
 
   useEffect(() => {
     checkAuth();

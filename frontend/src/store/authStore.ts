@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import axios, { AxiosError } from "axios";
 
-export const API_URL = "http://localhost:1000/api/auth";
+export const API_URL = "https://mern-taskpal-backend.onrender.com/api/auth";
 export interface User {
   _id: string;
   name: string;

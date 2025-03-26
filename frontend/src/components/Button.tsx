@@ -4,7 +4,11 @@ import { useAuthStore } from "../store/authStore";
 import { useNavigate } from "react-router-dom";
 
 const Button: React.FC<{ text: string }> = ({ text }) => {
-  const { isLoading, logout } = useAuthStore();
+  interface AuthState {
+    logout: () => Promise<void>;
+    isLoading: boolean;
+  }
+  const { isLoading, logout } = useAuthStore() as AuthState;
   const navigate = useNavigate();
 
   const handleLogout = async () => {
