@@ -89,7 +89,7 @@ export const sendLoginEmail = (email, name, loginDate) => {
   var mailOptions = {
     from: "johnedokpolor@gmail.com",
     to: email,
-    subject: "Login Email",
+    subject: "Login Notification",
     html: LOGIN_EMAIL_TEMPLATE.replace("{loginDate}", loginDate).replace(
       "{user}",
       name
