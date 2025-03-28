@@ -90,7 +90,7 @@ const Signup = () => {
           <Input
             icon={User}
             type="text"
-            placeholder="Full Name"
+            placeholder="John Doe"
             value={user.fullName}
             name="fullName"
             onChange={handleChange}
@@ -99,7 +99,7 @@ const Signup = () => {
           <Input
             icon={Mail}
             type="email"
-            placeholder="Email Address"
+            placeholder="johndoe@example.com"
             value={user.email}
             name="email"
             onChange={handleChange}
@@ -110,7 +110,7 @@ const Signup = () => {
             togglepassword={togglePassword}
             isvisible={visible}
             type={visible ? "text" : "password"}
-            placeholder="Password"
+            placeholder="********"
             value={user.password}
             name="password"
             onChange={handleChange}

@@ -76,7 +76,7 @@ const Login = () => {
           <Input
             icon={Mail}
             type="email"
-            placeholder="Email Address"
+            placeholder="johndoe@example.com"
             value={user.email}
             name="email"
             onChange={handleChange}
@@ -88,7 +88,7 @@ const Login = () => {
             type={visible ? "text" : "password"}
             isvisible={visible}
             togglepassword={togglePassword}
-            placeholder="Password"
+            placeholder="********"
             value={user.password}
             name="password"
             onChange={handleChange}

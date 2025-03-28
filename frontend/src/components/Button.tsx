@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Loader } from "lucide-react";
 import { useAuthStore } from "../store/authStore";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Button: React.FC<{ text: string }> = ({ text }) => {
   interface AuthState {
@@ -12,8 +13,16 @@ const Button: React.FC<{ text: string }> = ({ text }) => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    await logout();
-    navigate("/login");
+    try {
+      await logout();
+      navigate("/login");
+      toast.success("Logged out successfully");
+    } catch (error: any) {
+      if (error.message === "Network Error") {
+        toast.error(`${error.message}, connect to the internet.`);
+        return;
+      }
+    }
   };
   return (
     <motion.button

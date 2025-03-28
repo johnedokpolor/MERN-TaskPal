@@ -70,7 +70,7 @@ const ForgotPassword = () => {
               <Input
                 icon={Mail}
                 type="email"
-                placeholder="Email Address"
+                placeholder="johndoe@example.com"
                 value={email}
                 name="email"
                 onChange={(e) => setEmail(e.target.value)}

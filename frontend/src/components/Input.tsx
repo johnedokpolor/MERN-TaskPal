@@ -18,7 +18,7 @@ interface Props {
 const Input: React.FC<Props> = ({ icon: Icon, ...props }) => {
   return (
     <div className="relative mb-6  w-full  bg-gray-800/50  rounded-lg">
-      <div className=" inset-y-0 absolute left-3 flex items-center   pointer-events-none">
+      <div className=" inset-y-0 absolute left-2 flex items-center   pointer-events-none">
         <Icon className="size text-green-500" />
       </div>
       <input
