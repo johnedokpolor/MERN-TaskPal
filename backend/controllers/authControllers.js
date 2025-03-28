@@ -169,7 +169,7 @@ export const login = async (req, res) => {
     //Generates jsonwebtoken
     generateTokenAndSetCookie(res, user._id);
 
-    const lastLoginDate = new Date(Date.now()).toString().slice(0, 25);
+    const lastLoginDate = formatDate(Date.now());
     // Updates user's last login and saves to the database
     user.lastLoginDate = lastLoginDate;
 
