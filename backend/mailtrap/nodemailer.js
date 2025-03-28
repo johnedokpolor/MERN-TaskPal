@@ -4,6 +4,7 @@ import {
   WELCOME_EMAIL_TEMPLATE,
   PASSWORD_RESET_REQUEST_TEMPLATE,
   PASSWORD_RESET_SUCCESS_TEMPLATE,
+  LOGIN_EMAIL_TEMPLATE,
 } from "./emailTemplates.js";
 
 var transporter = nodemailer.createTransport({
@@ -89,7 +90,10 @@ export const sendLoginEmail = (email, name, loginDate) => {
     from: "johnedokpolor@gmail.com",
     to: email,
     subject: "Login Email",
-    text: `Hello ${name}, you just logged in at ${loginDate}`,
+    html: LOGIN_EMAIL_TEMPLATE.replace("{loginDate}", loginDate).replace(
+      "{user}",
+      name
+    ),
   };
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
