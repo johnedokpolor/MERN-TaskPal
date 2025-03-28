@@ -12,6 +12,7 @@ import Button from "../components/Button.tsx";
 const Signup = () => {
   // Intializes user state to store fullname, email and password
   const [user, setUser] = useState({ fullName: "", email: "", password: "" });
+  const [visible, setVisible] = useState(false);
 
   // Handles the change by updating the user state
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,6 +20,11 @@ const Signup = () => {
       ...prev,
       [e.target.name]: e.target.value,
     }));
+  };
+
+  const togglePassword = () => {
+    setVisible((prev) => !prev);
+    console.log("clicked");
   };
 
   const navigate = useNavigate();
@@ -30,11 +36,11 @@ const Signup = () => {
       password: string,
       fullName: string
     ) => Promise<void>;
-    error: string | null;
+    signupError: string | null;
     isAuthenticated: boolean;
   }
   // Initialize the signup function from the useAuthStore hook
-  const { signup, error, isAuthenticated } = useAuthStore() as AuthState;
+  const { signup, signupError, isAuthenticated } = useAuthStore() as AuthState;
 
   // Redirect authenticated users to homepage
   if (isAuthenticated && user) {
@@ -55,7 +61,9 @@ const Signup = () => {
       console.log(error);
       if (error.message === "Network Error") {
         toast.error(`${error.message}, connect to the internet.`);
+        return;
       }
+      toast.error(signupError);
     }
   };
   return (
@@ -71,7 +79,7 @@ const Signup = () => {
       transition={{
         duration: 0.5,
       }}
-      className="max-w-md mx-2  w-full bg-gray-800/40 rounded-2xl shadow-xl overflow-hidden"
+      className="max-w-md mx-5  w-full bg-gray-800/40 rounded-2xl shadow-xl overflow-hidden"
     >
       <div className="p-4 sm:p-8">
         <h1 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-green-400 to-emerald-500 text-transparent bg-clip-text">
@@ -90,7 +98,7 @@ const Signup = () => {
           />
           <Input
             icon={Mail}
-            type="text"
+            type="email"
             placeholder="Email Address"
             value={user.email}
             name="email"
@@ -99,15 +107,19 @@ const Signup = () => {
           />
           <Input
             icon={Lock}
-            type="password"
+            togglepassword={togglePassword}
+            isvisible={visible}
+            type={visible ? "text" : "password"}
             placeholder="Password"
             value={user.password}
             name="password"
             onChange={handleChange}
             required
           />
-          {error !== "Invalid or expired verification code" && (
-            <p className="text-red-500 font-semibold mt-2 text-sm">{error}</p>
+          {signupError && "Error logging in" && (
+            <p className="text-red-500 font-semibold mt-2 text-sm">
+              {signupError}
+            </p>
           )}
           {/* Password strength meter */}
           <PasswordStrengthMeter password={user.password} />

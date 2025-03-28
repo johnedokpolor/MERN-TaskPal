@@ -10,18 +10,19 @@ import toast from "react-hot-toast";
 const ResetPassword = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [visible, setVisible] = useState(false);
 
   interface AuthState {
     resetPassword: (
       token: string | undefined,
       password: string
     ) => Promise<void>;
-    error: string | null;
+    resetpasswordError: string | null;
     message: string | null;
     user: User | null;
     isAuthenticated: boolean;
   }
-  const { resetPassword, error, user, isAuthenticated, message } =
+  const { resetPassword, resetpasswordError, user, isAuthenticated, message } =
     useAuthStore() as AuthState;
 
   // Redirect authenticated users to homepage
@@ -47,8 +48,17 @@ const ResetPassword = () => {
       }, 2000);
     } catch (error: any) {
       console.log(error);
-      toast.error(`${error.message}, please try again`);
+      if (error.message === "Network Error") {
+        toast.error(`${error.message}, connect to the internet.`);
+        return;
+      }
+      toast.error(resetpasswordError);
     }
+  };
+
+  const togglePassword = () => {
+    setVisible((prev) => !prev);
+    console.log("clicked");
   };
   return (
     <motion.div
@@ -63,7 +73,7 @@ const ResetPassword = () => {
       transition={{
         duration: 0.5,
       }}
-      className="max-w-md mx-2  w-full bg-gray-800/40 rounded-2xl shadow-xl overflow-hidden"
+      className="max-w-md mx-5  w-full bg-gray-800/40 rounded-2xl shadow-xl overflow-hidden"
     >
       <div className="p-4 sm:p-8">
         <h1 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-green-400 to-emerald-500 text-transparent bg-clip-text">
@@ -73,7 +83,9 @@ const ResetPassword = () => {
         <form onSubmit={handleSubmit}>
           <Input
             icon={Lock}
-            type="password"
+            togglepassword={togglePassword}
+            isvisible={visible}
+            type={visible ? "text" : "password"}
             placeholder="Password"
             value={password}
             name="email"
@@ -83,7 +95,9 @@ const ResetPassword = () => {
           />
           <Input
             icon={Lock}
-            type="password"
+            togglepassword={togglePassword}
+            isvisible={visible}
+            type={visible ? "text" : "password"}
             placeholder="Confirm Password"
             value={confirmPassword}
             name="confirm-password"
@@ -92,8 +106,10 @@ const ResetPassword = () => {
             aria-label="Password"
           />
 
-          {error && (
-            <p className="text-red-500 text-sm mt-2 font-semibold">{error}</p>
+          {resetpasswordError && (
+            <p className="text-red-500 text-sm mt-2 font-semibold">
+              {resetpasswordError}
+            </p>
           )}
           {message && (
             <p className="text-green-500 text-sm mt-2 font-semibold">

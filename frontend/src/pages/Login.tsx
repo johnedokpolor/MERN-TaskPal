@@ -11,6 +11,7 @@ const Login = () => {
   const navigate = useNavigate();
   // Intializes user state to store email and password
   const [user, setUser] = useState({ email: "", password: "" });
+  const [visible, setVisible] = useState(false);
 
   // Handles the change by updating the user state
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,10 +21,10 @@ const Login = () => {
 
   interface AuthState {
     login: (email: string, password: string) => Promise<void>;
-    error: string | null;
+    loginError: string | null;
     isAuthenticated: boolean;
   }
-  const { login, error, isAuthenticated } = useAuthStore() as AuthState;
+  const { login, loginError, isAuthenticated } = useAuthStore() as AuthState;
 
   // Redirect authenticated users to homepage
   if (isAuthenticated && user) {
@@ -38,9 +39,17 @@ const Login = () => {
       navigate("/");
       toast.success("Logged in successfully");
     } catch (error: any) {
-      if (error.message === "Network Error")
+      if (error.message === "Network Error") {
         toast.error(`${error.message}, connect to the internet.`);
+        return;
+      }
+      toast.error(loginError);
     }
+  };
+
+  const togglePassword = () => {
+    setVisible((prev) => !prev);
+    console.log("clicked");
   };
 
   return (
@@ -56,7 +65,7 @@ const Login = () => {
       transition={{
         duration: 0.5,
       }}
-      className="max-w-md mx-2  w-full bg-gray-800/40 rounded-2xl shadow-xl overflow-hidden"
+      className="max-w-md mx-5  w-full bg-gray-800/40 rounded-2xl shadow-xl overflow-hidden"
     >
       <div className="p-4 sm:p-8">
         <h1 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-green-400 to-emerald-500 text-transparent bg-clip-text">
@@ -66,7 +75,7 @@ const Login = () => {
         <form onSubmit={handleLogin}>
           <Input
             icon={Mail}
-            type="text"
+            type="email"
             placeholder="Email Address"
             value={user.email}
             name="email"
@@ -76,7 +85,9 @@ const Login = () => {
           />
           <Input
             icon={Lock}
-            type="password"
+            type={visible ? "text" : "password"}
+            isvisible={visible}
+            togglepassword={togglePassword}
             placeholder="Password"
             value={user.password}
             name="password"
@@ -87,10 +98,11 @@ const Login = () => {
           <Link to="/forgot-password" className="text-green-400">
             Forgot Password?
           </Link>
-          {error !== "User Already Exists" &&
-            "Invalid or expired verification code" && (
-              <p className="text-red-500 text-sm mt-2 font-semibold">{error}</p>
-            )}
+          {loginError && (
+            <p className="text-red-500 text-sm mt-2 font-semibold">
+              {loginError}
+            </p>
+          )}
           <Button text="Login" />
         </form>
       </div>

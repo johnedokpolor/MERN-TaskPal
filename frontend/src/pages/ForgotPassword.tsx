@@ -13,11 +13,11 @@ const ForgotPassword = () => {
 
   interface AuthState {
     forgotPassword: (email: string) => Promise<void>;
-    error: string | null;
+    forgotpasswordError: string | null;
     user: User | null;
     isAuthenticated: boolean;
   }
-  const { forgotPassword, error, isAuthenticated, user } =
+  const { forgotPassword, forgotpasswordError, isAuthenticated, user } =
     useAuthStore() as AuthState;
 
   if (isAuthenticated && user) {
@@ -30,8 +30,12 @@ const ForgotPassword = () => {
       await forgotPassword(email);
       setIsSubmitted(true);
       toast.success("Password reset link sent to your email");
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      if (error.message === "Network Error") {
+        toast.error(`${error.message}, connect to the internet.`);
+        return;
+      }
+      toast.error(forgotpasswordError);
     }
   };
 
@@ -48,7 +52,7 @@ const ForgotPassword = () => {
       transition={{
         duration: 0.5,
       }}
-      className="max-w-md mx-2  w-full bg-gray-800/40 rounded-2xl shadow-xl overflow-hidden"
+      className="max-w-md mx-5  w-full bg-gray-800/40 rounded-2xl shadow-xl overflow-hidden"
     >
       <div className="p-4 sm:p-8">
         <h1 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-green-400 to-emerald-500 text-transparent bg-clip-text">
@@ -65,7 +69,7 @@ const ForgotPassword = () => {
             <form onSubmit={handleSubmit}>
               <Input
                 icon={Mail}
-                type="text"
+                type="email"
                 placeholder="Email Address"
                 value={email}
                 name="email"
@@ -73,9 +77,9 @@ const ForgotPassword = () => {
                 required
               />
 
-              {error && (
+              {forgotpasswordError && (
                 <span className="text-red-500 font-semibold text-sm">
-                  {error}
+                  {forgotpasswordError}
                 </span>
               )}
 

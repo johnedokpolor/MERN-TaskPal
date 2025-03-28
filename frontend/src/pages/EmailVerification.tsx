@@ -28,13 +28,13 @@ const EmailVerification = () => {
 
   interface AuthState {
     verifyEmail: (code: string) => Promise<void>;
-    error: string | null;
+    verifyemailError: string | null;
     isLoading: boolean;
     user: User | null;
     isAuthenticated: boolean;
   }
   // Initialize the signup function from the useAuthStore hook
-  const { verifyEmail, error, isLoading, user, isAuthenticated } =
+  const { verifyEmail, verifyemailError, isLoading, user, isAuthenticated } =
     useAuthStore() as AuthState;
 
   // Redirect authenticated users to homepage
@@ -95,7 +95,11 @@ const EmailVerification = () => {
       }, 2000);
     } catch (error: any) {
       console.log(error);
-      toast.error(error.response?.data?.message || "Error verifying email");
+      if (error.message === "Network Error") {
+        toast.error(`${error.message}, connect to the internet.`);
+        return;
+      }
+      toast.error(verifyemailError);
     }
   };
   return (
@@ -111,7 +115,7 @@ const EmailVerification = () => {
       transition={{
         duration: 0.5,
       }}
-      className="max-w-md mx-2  w-full bg-gray-800/40 rounded-2xl shadow-xl overflow-hidden"
+      className="max-w-md mx-5  w-full bg-gray-800/40 rounded-2xl shadow-xl overflow-hidden"
     >
       <div className="p-4 sm:p-8">
         <h1 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-green-400 to-emerald-500 text-transparent bg-clip-text">
@@ -139,8 +143,10 @@ const EmailVerification = () => {
               />
             ))}
           </div>
-          {error && (
-            <span className="text-red-500 font-semibold text-sm">{error}</span>
+          {verifyemailError && (
+            <span className="text-red-500 font-semibold text-sm">
+              {verifyemailError}
+            </span>
           )}
 
           <motion.button

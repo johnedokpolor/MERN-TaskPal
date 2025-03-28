@@ -15,7 +15,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 // CORS Policy Middleware
-const allowedOrigins = [process.env.CLIENT_URL];
+const allowedOrigins = [process.env.CLIENT_URL, process.env.DEVELOPMENT_URL];
 app.use(
   cors({
     origin: function (origin, callback) {
