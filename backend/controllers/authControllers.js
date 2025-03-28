@@ -189,9 +189,15 @@ export const login = async (req, res) => {
     throw new Error(error.message);
   }
 };
+
 export const logout = async (req, res) => {
   // Clears the cookie and logs out the user
-  res.clearCookie("token");
+  res.clearCookie("token", {
+    httpOnly: true, // Ensure the cookie is not accessible via JavaScript
+    secure: process.env.NODE_ENV === "production", // Only send over HTTPS in production
+    sameSite: "none", // Same attribute as when the cookie was set
+    path: "/", // Specify the same path used for the cookie
+  });
   res.status(200).json({ success: true, message: "Logged out successfully" });
 };
 

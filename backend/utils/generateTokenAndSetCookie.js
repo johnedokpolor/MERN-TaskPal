@@ -12,6 +12,7 @@ export const generateTokenAndSetCookie = (res, userId) => {
     sameSite: "none",
     // sameSite: "strict",  only allow same domain requests
     maxAge: 7 * 24 * 60 * 60 * 1000, //expires in 7days
+    path: "/",
   });
   return token;
 };
