@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-import LoadingSpinner from "./LoadingSpinner";
 import { Loader } from "lucide-react";
 
 const DeleteAlert = ({

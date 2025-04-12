@@ -5,13 +5,11 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
   Bar,
   Cell,
-  Text,
 } from "recharts";
-import { barChart, ChartData } from "../../utils/interfaces";
+import { barChart } from "../../utils/interfaces";
 
 // Custom text component for X-axis labels with colored tspans
 const CustomXAxisTick = (props: any) => {

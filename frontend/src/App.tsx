@@ -1,4 +1,3 @@
-import { FloatingShape } from "./components/FloatingShape";
 import { Route, Routes } from "react-router-dom";
 import {
   Login,
@@ -7,7 +6,6 @@ import {
   ForgotPassword,
   ResetPassword,
   UserDashboard,
-  PrivateRoute,
   AdminDashboard,
   LandingPage,
   ManageTasks,
@@ -18,7 +16,7 @@ import {
 } from "./pages/pages";
 import { Toaster } from "react-hot-toast";
 import { ContextStore } from "./store/ContextStore";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 function App() {
   const {

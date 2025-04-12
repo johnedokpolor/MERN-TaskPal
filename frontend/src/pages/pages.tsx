@@ -11,7 +11,6 @@ import { default as ManageUsers } from "./Admin/ManageUsers";
 import { default as UserDashboard } from "./User/Dashboard";
 import { default as UserTasks } from "./User/MyTasks";
 import { default as ViewTaskDetails } from "./User/ViewTaskDetails";
-import { default as PrivateRoute } from "../routes/PrivateRoute";
 
 export {
   LandingPage,
@@ -24,7 +23,6 @@ export {
   CreateTask,
   ManageUsers,
   ManageTasks,
-  PrivateRoute,
   UserDashboard,
   UserTasks,
   ViewTaskDetails,

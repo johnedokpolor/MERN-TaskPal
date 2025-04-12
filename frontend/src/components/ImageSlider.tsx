@@ -1,4 +1,3 @@
-"use client";
 import { useState, useEffect } from "react";
 import PeaceImg from "../assets/peace-mind.jpg";
 import BikeImg from "../assets/bike.jpg";
@@ -25,12 +24,6 @@ const ImageSlider = () => {
   const nextSlide = () => {
     setActiveSlide((prev) =>
       prev === illustrations.length - 1 ? 0 : prev + 1
-    );
-  };
-
-  const prevSlide = () => {
-    setActiveSlide((prev) =>
-      prev === 0 ? illustrations.length - 1 : prev - 1
     );
   };
 

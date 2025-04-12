@@ -2,12 +2,12 @@ import { create } from "zustand";
 import axios, { AxiosError } from "axios";
 import { ContextState } from "../utils/interfaces";
 
-export const BASE_URL = "http://localhost:1000"; // development server url
-export const AUTH_URL = "api/auth"; // development server url
-export const TASK_URL = "api/tasks"; // development server url
-export const USER_URL = "api/users"; // development server url
+// export const BASE_URL = "http://localhost:1000"; // development server url
+export const BASE_URL = "https://mern-taskpal-backend.onrender.com"; // production server url
+export const AUTH_URL = "api/auth";
+export const TASK_URL = "api/tasks";
+export const USER_URL = "api/users";
 export const REPORT_URL = "api/reports/export"; // development server url
-// export const BASE_URL = "https://mern-taskpal-backend.onrender.com"; // production server url
 
 // Put cookies in every request header
 axios.defaults.withCredentials = true;

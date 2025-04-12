@@ -7,7 +7,7 @@ import ToggleDarkMode from "../ToggleDarkMode";
 const Navbar: React.FC<{ activeMenu: string }> = ({ activeMenu }) => {
   const [openSideMenu, setOpenSideMenu] = useState(false);
   return (
-    <div className="w-full bg-[#f0f4f994] sticky  px-5 md:px-10 py-4 flex items-center justify-between border-b border-gray-300 dark:bg-[#1f1f1f] dark:border-white/20">
+    <div className="w-full bg-[#f0f4f994] px-5 md:px-10 py-4 flex items-center justify-between border-b border-gray-300 dark:bg-[#1f1f1f] dark:border-white/20">
       <div className="flex items-center gap-1">
         <button
           className="block text-lg lg:hidden text-black"
@@ -23,7 +23,7 @@ const Navbar: React.FC<{ activeMenu: string }> = ({ activeMenu }) => {
         </button>
         {/* <img src={logo} className="bg-black rounded-full size-13" alt="Logo" />
          */}
-        <ListTodo className="bg-green-400 p-1 text-white rounded size-8" />
+        <ListTodo className="bg-green-700 p-1 text-white rounded size-8" />
         <h1 className="font-medium text-2xl ">Nexa</h1>
       </div>
       <ToggleDarkMode />

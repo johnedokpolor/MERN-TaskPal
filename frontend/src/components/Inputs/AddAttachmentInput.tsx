@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Trash2, Plus, Paperclip } from "lucide-react";
 import { AddAttachmentInputProps } from "../../utils/interfaces";
 

@@ -54,7 +54,7 @@ const SideMenu: React.FC<{ activeMenu: string }> = ({ activeMenu }) => {
         </div>
 
         {loggedInUser?.role === "admin" && (
-          <div className="text-md text-white bg-green-400 px-3 py-0.5 rounded mt-3">
+          <div className="text-md text-white bg-green-700 px-3 py-0.5 rounded mt-3">
             Admin
           </div>
         )}
@@ -70,7 +70,7 @@ const SideMenu: React.FC<{ activeMenu: string }> = ({ activeMenu }) => {
               key={`menu_${index}`}
               className={`w-full flex  items-center gap-4 text-base  py-3 px-6 mb-3 cursor-pointer${
                 activeMenu === item.label
-                  ? " w-full border-r-3 border-green-400  bg-gradient-to-r from-green-50/40   to-green-100/40"
+                  ? " w-full border-r-3 border-green-700  bg-gradient-to-r from-green-50/40   to-green-100/40"
                   : ""
               }`}
               onClick={() => handleClick(item.path)}

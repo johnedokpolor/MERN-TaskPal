@@ -1,4 +1,3 @@
-import React from "react";
 import { TaskStatusTabsProps } from "../utils/interfaces";
 
 const TaskStatusTabs = ({

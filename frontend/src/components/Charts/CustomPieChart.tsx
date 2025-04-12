@@ -10,46 +10,6 @@ import {
 } from "recharts";
 
 // Custom renderer for the pie chart labels
-const renderCustomizedLabel = ({
-  cx,
-  cy,
-  midAngle,
-  innerRadius,
-  outerRadius,
-  percent,
-  index,
-  name,
-  value,
-}: {
-  cx: number;
-  cy: number;
-  midAngle: number;
-  innerRadius: number;
-  outerRadius: number;
-  percent: number;
-  index: number;
-  name: string;
-  value: number;
-}) => {
-  const RADIAN = Math.PI / 180;
-  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-  const x = cx + radius * Math.cos(-midAngle * RADIAN);
-  const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-  return (
-    <text
-      x={x}
-      y={y}
-      fill="white"
-      textAnchor={x > cx ? "start" : "end"}
-      dominantBaseline="central"
-      fontSize={12}
-      fontWeight="bold"
-    >
-      {`${(percent * 100).toFixed(0)}%`}
-    </text>
-  );
-};
 
 const CustomPieChart: React.FC<pieChart> = ({ data, colors }) => {
   // Custom tooltip formatter
@@ -92,7 +52,7 @@ const CustomPieChart: React.FC<pieChart> = ({ data, colors }) => {
         >
           {data.map((entry, index) => (
             <Cell
-              key={`cell-${index}`}
+              key={`${entry}-${index}`}
               fill={colors[index % colors.length]}
               stroke="#fff"
               strokeWidth={1}

@@ -26,8 +26,6 @@ const EmailVerification = () => {
     }
   }, [code]);
 
-  const navigate = useNavigate();
-
   // Initialize the signup function from the ContextStore hook
   const {
     verifyEmail,
@@ -106,7 +104,7 @@ const EmailVerification = () => {
 
   const handleResendToken = async () => {
     try {
-      const response = await axios.post(`${BASE_URL}/${AUTH_URL}/send-token`);
+      await axios.post(`${BASE_URL}/${AUTH_URL}/send-token`);
       toast.success("New Token has been sent to your mail.");
     } catch (error) {
       console.error("Error sending token", error);

@@ -1,14 +1,25 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 import { ContextStore } from "../../store/ContextStore";
 import Navbar from "./Navbar";
 import SideMenu from "./SideMenu";
 import LoadingSpinner from "../LoadingSpinner";
+import { useNavigate } from "react-router-dom";
 
 const DashboardLayout: React.FC<{
   children: ReactNode;
   activeMenu: string;
 }> = ({ children, activeMenu }) => {
-  const { user, isCheckingAuth } = ContextStore();
+  const { isCheckingAuth, isAuthenticated, user, admin } = ContextStore();
+  const navigate = useNavigate();
+
+  // Redirect authenticated users to homepage according to the roles
+  useEffect(() => {
+    if (!isAuthenticated && !user) {
+      navigate("/login", { replace: true });
+    } else if (!isAuthenticated && !admin) {
+      navigate("/login", { replace: true });
+    }
+  }, [user, admin]);
 
   if (isCheckingAuth) {
     return <LoadingSpinner />;
