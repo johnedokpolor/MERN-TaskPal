@@ -35,12 +35,12 @@ const Input: React.FC<Props> = ({
         (isvisible ? (
           <Eye
             onClick={togglepassword}
-            className="size-6 absolute right-5 top-4  cursor-pointer text-green-700"
+            className="size-6 absolute right-2 md:right-5 top-4  cursor-pointer text-green-700"
           />
         ) : (
           <EyeClosed
             onClick={togglepassword}
-            className="size-6 absolute right-5 top-4 cursor-pointer text-green-700"
+            className="size-6 absolute right-2 md:right-5 top-4 cursor-pointer text-green-700"
           />
         ))}
     </div>
