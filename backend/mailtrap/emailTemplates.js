@@ -6,7 +6,7 @@ export const VERIFICATION_EMAIL_TEMPLATE = `
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Verify Your Email</title>
 </head>
-<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; ;">
   <div style="background: linear-gradient(to right, #4CAF50, #45a049); padding: 20px; text-align: center;">
     <h1 style="color: white; margin: 0;">Verify Your Email</h1>
   </div>
@@ -19,7 +19,7 @@ export const VERIFICATION_EMAIL_TEMPLATE = `
     <p>Enter this code on the verification page to complete your registration.</p>
     <p>This code will expire at {tokenExpiry} for security reasons.</p>
     <p>If you didn't create an account with us, please ignore this email.</p>
-    <p>Best regards,<br>TaskPal Team</p>
+    <p>Best regards,<br>Nexa Team.</p>
   </div>
   <div style="text-align: center; margin-top: 20px; color: #888; font-size: 0.8em;">
     <p>This is an automated message, please do not reply to this email.</p>
@@ -33,18 +33,18 @@ export const WELCOME_EMAIL_TEMPLATE = `
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to TaskPal</title>
+  <title>Welcome to Nexa</title>
 </head>
-<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto;">
   <div style="background: linear-gradient(to right, #4CAF50, #45a049); padding: 20px; text-align: center;">
-    <h1 style="color: white; margin: 0;">Welcome to TaskPal</h1>
+    <h1 style="color: white; margin: 0;">Welcome to Nexa</h1>
   </div>
   <div style="background-color: #f9f9f9; padding: 20px; border-radius: 0 0 5px 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
     <p>Hello, {user}</p>
     <p>Thank you for choosing us! We are happy you did</p>
     
     <p>We hope you enjoy this journey as much as we enjoy creating it for you.</p>
-    <p>Best regards,<br>TaskPal Team</p>
+    <p>Best regards,<br>Nexa Team.</p>
   </div>
   <div style="text-align: center; margin-top: 20px; color: #888; font-size: 0.8em;">
     <p>This is an automated message, please do not reply to this email.</p>
@@ -61,7 +61,7 @@ export const PASSWORD_RESET_SUCCESS_TEMPLATE = `
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Password Reset Successful</title>
 </head>
-<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto;">
   <div style="background: linear-gradient(to right, #4CAF50, #45a049); padding: 20px; text-align: center;">
     <h1 style="color: white; margin: 0;">Password Reset Successful</h1>
   </div>
@@ -73,7 +73,7 @@ export const PASSWORD_RESET_SUCCESS_TEMPLATE = `
         ✓
       </div>
     </div>
-    <p>If you did not initiate this password reset, please contact our support team immediately.</p>
+    <p>If you did not initiate this password reset, please contact our support Team. immediately.</p>
     <p>For security reasons, we recommend that you:</p>
     <ul>
       <li>Use a strong, unique password</li>
@@ -81,7 +81,7 @@ export const PASSWORD_RESET_SUCCESS_TEMPLATE = `
       <li>Avoid using the same password across multiple sites</li>
     </ul>
     <p>Thank you for helping us keep your account secure.</p>
-    <p>Best regards,<br>TaskPal Team</p>
+    <p>Best regards,<br>Nexa Team.</p>
   </div>
   <div style="text-align: center; margin-top: 20px; color: #888; font-size: 0.8em;">
     <p>This is an automated message, please do not reply to this email.</p>
@@ -97,7 +97,7 @@ export const LOGIN_EMAIL_TEMPLATE = `
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login Notification</title>
 </head>
-<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto;">
   <div style="background: linear-gradient(to right, #4CAF50, #45a049); padding: 20px; text-align: center;">
     <h1 style="color: white; margin: 0;">Login Notification</h1>
   </div>
@@ -109,7 +109,7 @@ export const LOGIN_EMAIL_TEMPLATE = `
         ✓
       </div>
     </div>
-    <p>If you did not login to your account, please contact our support team immediately.</p>
+    <p>If you did not login to your account, please contact our support Team. immediately.</p>
     <p>For security reasons, we recommend that you:</p>
     <ul>
       <li>Use a strong, unique password.</li>
@@ -117,7 +117,7 @@ export const LOGIN_EMAIL_TEMPLATE = `
       <li>Avoid sharing your password with others.</li>
     </ul>
     <p>Thank you for helping us keep your account secure.</p>
-    <p>Best regards,<br>TaskPal Team</p>
+    <p>Best regards,<br>Nexa Team.</p>
   </div>
   <div style="text-align: center; margin-top: 20px; color: #888; font-size: 0.8em;">
     <p>This is an automated message, please do not reply to this email.</p>
@@ -125,7 +125,6 @@ export const LOGIN_EMAIL_TEMPLATE = `
 </body>
 </html>
 `;
-
 export const PASSWORD_RESET_REQUEST_TEMPLATE = `
 <!DOCTYPE html>
 <html lang="en">
@@ -134,7 +133,7 @@ export const PASSWORD_RESET_REQUEST_TEMPLATE = `
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reset Your Password</title>
 </head>
-<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto;">
   <div style="background: linear-gradient(to right, #4CAF50, #45a049); padding: 20px; text-align: center;">
     <h1 style="color: white; margin: 0;">Password Reset</h1>
   </div>
@@ -146,11 +145,86 @@ export const PASSWORD_RESET_REQUEST_TEMPLATE = `
       <a href="{resetURL}" style="background-color: #4CAF50; color: white; padding: 12px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">Reset Password</a>
     </div>
     <p>This link will expire at {tokenExpiry}  for security reasons.</p>
-    <p>Best regards,<br>TaskPal Team</p>
+    <p>Best regards,<br>Nexa Team.</p>
   </div>
   <div style="text-align: center; margin-top: 20px; color: #888; font-size: 0.8em;">
     <p>This is an automated message, please do not reply to this email.</p>
   </div>
 </body>
+</html>
+`;
+
+export const ASSIGNED_TASK_TEMPLATE = `
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Notification</title>
+  </head>
+  <body
+    style="
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 100%;
+      margin: 0 auto;
+    "
+  >
+    <div
+      style="
+        background: linear-gradient(to right, #4caf50, #45a049);
+        padding: 20px;
+        text-align: center;
+      "
+    >
+      <h1 style="color: white; margin: 0">Task Notification</h1>
+    </div>
+    <div
+      style="
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 0 0 5px 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      "
+    >
+      <p>Hello, {user}</p>
+      <p>You've been assigned a task by {admin} with the following details:</p>
+      <ul>
+        <li>Title: {title}</li>
+        <li>Description: {description}</li>
+        <li>Status: {status}</li>
+        <li>Priority: {priority}</li>
+        <li>Due Date: {dueDate}</li>
+      </ul>
+      <p>Please login to Nexa for more details.</p>
+      <div style="text-align: center; margin: 30px 0">
+        <a
+          href="{loginURL}"
+          style="
+            background-color: #4caf50;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+          "
+          >View Task</a
+        >
+      </div>
+
+      <p>Best regards,<br />Nexa Team.</p>
+    </div>
+    <div
+      style="
+        text-align: center;
+        margin-top: 20px;
+        color: #888;
+        font-size: 0.8em;
+      "
+    >
+      <p>This is an automated message, please do not reply to this email.</p>
+    </div>
+  </body>
 </html>
 `;

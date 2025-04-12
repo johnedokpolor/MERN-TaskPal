@@ -1,4 +1,4 @@
-import { useAuthStore, User } from "../store/authStore";
+import { useAuthStore, User } from "../store/ContextStore";
 import { Navigate } from "react-router-dom";
 
 export const redirectAuthenticatedUsers = () => {

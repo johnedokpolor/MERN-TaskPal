@@ -1,6 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @layer components {
+  body::-webkit-scrollbar {
+    display: none;
+  }
+  body {
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+
   input[type="number"]::-webkit-outer-spin-button,
   input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -9,5 +21,40 @@
 
   input[type="number"] {
     -moz-appearance: textfield;
+    color: #f0f4f94b;
+  }
+
+  .light {
+    @apply w-full justify-center items-center overflow-hidden bg-white;
+  }
+  .dark {
+    @apply min-h-screen w-full justify-center overflow-hidden bg-black text-white;
+  }
+  .card {
+    @apply bg-[#f0f4f994]  dark:bg-[#1f1f1f] p-6 rounded-2xl shadow-md dark:shadow-gray-900 shadow-gray-100 border border-gray-200/50 dark:border-white/20;
+  }
+  .card-btn {
+    @apply flex items-center gap-3 text-[12px] font-medium text-gray-700 hover:text-green-400 bg-gray-50 dark:bg-black/10 dark:text-white hover:bg-green-50 dark:hover:text-white dark:hover:bg-green-50/50 px-4 py-1.5 rounded-lg border border-slate-400 cursor-pointer;
+  }
+  .card-btn-fill {
+    @apply flex items-center gap-3 text-[12px] font-medium text-white bg-green-500 hover:bg-green-600 dark:bg-green-400 dark:hover:bg-green-500 px-4 py-1.5 rounded-lg border border-slate-400 cursor-pointer;
+  }
+  .form-card {
+    @apply bg-[#f0f4f994] p-6 rounded-lg shadow shadow-gray-100 border-gray-200/50 dark:shadow-gray-900 dark:bg-[#1f1f1f];
+  }
+  .form-input {
+    @apply w-full text-sm outline-0 bg-[#f0f4f994] border border-slate-400 dark:border-white px-2.5 py-3 rounded-md mt-2 placeholder:text-gray-500 dark:bg-[#1f1f1f] dark:placeholder:text-white/50;
+  }
+  .form-input-sub {
+    @apply w-full text-sm outline-0 bg-[#f0f4f994] border border-slate-400 dark:border-white px-2.5 py-3 rounded-md  placeholder:text-gray-500 dark:bg-[#1f1f1f] dark:placeholder:text-white/50;
+  }
+  .add-btn {
+    @apply w-full flex items-center justify-center gap-1.5 text-xs md:text-sm font-medium text-green-500 bg-green-50    px-4 py-1.5 rounded-lg mt-4 border border-green-300 cursor-pointer;
+  }
+  .download-btn {
+    @apply items-center gap-3 text-xs md:text-base text-lime-900 bg-lime-100 px-2 md:px-3 py-1 rounded border border-lime-200 hover:border-lime-400 cursor-pointer;
+  }
+  .user-card {
+    @apply bg-[#f0f4f994] dark:bg-[#1f1f1f] p-6 rounded-2xl shadow-md dark:shadow-gray-900 shadow-gray-100 border border-gray-200/50 dark:border-white/20;
   }
 }

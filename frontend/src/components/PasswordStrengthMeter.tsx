@@ -8,7 +8,7 @@ interface Password {
 const PasswordCriteria: React.FC<Password> = ({ password }) => {
   // Criterias to check password strength
   const criteria = [
-    { label: "At least 6 characters", met: password.length >= 6 },
+    { label: "At least 8 characters", met: password.length >= 8 },
     { label: "Contains uppercase letter", met: /[A-Z]/.test(password) },
     { label: "Contains lowercase letter", met: /[a-z]/.test(password) },
     { label: "Contains a number", met: /\d/.test(password) },
@@ -21,14 +21,14 @@ const PasswordCriteria: React.FC<Password> = ({ password }) => {
         <div key={index} className="flex text-xs">
           {/* Checks if individual criterias and met and update the UI */}
           {item.met ? (
-            <Check className="size-4 text-green-500 mr-2" />
+            <Check className="size-4 text-green-700 mr-2" />
           ) : (
             <X className="size-4 text-gray-500 mr-2" />
           )}
           <span
-            className={item.met ? "text-green-500" : "text-gray-500"}
+            className={item.met ? "text-green-700" : "text-gray-500"}
           ></span>
-          <span className={item.met ? "text-green-500" : "text-gray-500"}>
+          <span className={item.met ? "text-green-700" : "text-gray-500"}>
             {item.label}
           </span>
         </div>
@@ -41,7 +41,7 @@ const PasswordStrengthMeter: React.FC<Password> = ({ password }) => {
   // Increases of the password by checking the criterias
   const getStrength = (pass: string) => {
     let strength = 0;
-    if (pass.length >= 6) strength++;
+    if (pass.length >= 8) strength++;
     if (pass.match(/[a-z]/) && pass.match(/[A-Z]/)) strength++;
     if (pass.match(/\d/)) strength++;
     if (pass.match(/[^a-zA-Z\d]/)) strength++;
@@ -52,11 +52,11 @@ const PasswordStrengthMeter: React.FC<Password> = ({ password }) => {
 
   // Get unique colors according to strength
   const getColor = (strength: number) => {
-    if (strength === 0) return "bg-red-500";
-    if (strength === 1) return "bg-red-400";
+    if (strength === 0) return "bg-red-600";
+    if (strength === 1) return "bg-orange-500";
     if (strength === 2) return "bg-yellow-500";
     if (strength === 3) return "bg-yellow-400";
-    return "bg-green-500";
+    return "bg-green-700";
   };
 
   // Get unique text according to strength
@@ -70,8 +70,8 @@ const PasswordStrengthMeter: React.FC<Password> = ({ password }) => {
   return (
     <div className="mt-2">
       <div className="flex justify-between items-center mb-1">
-        <span className="text-xs text-gray-400">Password Strength</span>
-        <span className="text-xs text-gray-400">
+        <span className="text-xs text-gray-700">Password Strength</span>
+        <span className="text-xs text-gray-700">
           {getStrengthText(strength)}
         </span>
       </div>
@@ -82,7 +82,7 @@ const PasswordStrengthMeter: React.FC<Password> = ({ password }) => {
           <div
             key={index}
             className={`h-1 w-1/4 rounded-full transition-colors duration-300 ${
-              strength > index ? getColor(strength) : "bg-gray-600"
+              strength > index ? getColor(strength) : "bg-gray-300"
             }`}
           ></div>
         ))}

@@ -6,95 +6,79 @@ import {
   EmailVerification,
   ForgotPassword,
   ResetPassword,
-  Dashboard,
+  UserDashboard,
+  PrivateRoute,
+  AdminDashboard,
+  LandingPage,
+  ManageTasks,
+  CreateTask,
+  ManageUsers,
+  ViewTaskDetails,
+  UserTasks,
 } from "./pages/pages";
 import { Toaster } from "react-hot-toast";
-import { useAuthStore, User } from "./store/authStore";
-import { useEffect } from "react";
-import LoadingSpinner from "./components/LoadingSpinner";
+import { ContextStore } from "./store/ContextStore";
+import { useEffect, useState } from "react";
 
 function App() {
-  interface AuthState {
-    checkAuth: () => Promise<void>;
-    user: User | null;
-    isLoading: boolean;
-    error: string;
-    isAuthenticated: boolean;
-    isCheckingAuth: boolean;
-  }
-  const { user, error, isAuthenticated, checkAuth, isCheckingAuth } =
-    useAuthStore() as AuthState;
+  const {
+    user,
+    admin,
+    error,
+    dark,
+    isAuthenticated,
+    checkAuth,
+    isCheckingAuth,
+  } = ContextStore();
 
   useEffect(() => {
+    localStorage.setItem("dark", JSON.stringify(dark));
+  }, [dark]);
+
+  useEffect(() => {
+    console.log("checking auth");
     checkAuth();
   }, [checkAuth]);
-
-  console.log(user, isAuthenticated, isCheckingAuth, error);
-  if (isCheckingAuth) {
-    return <LoadingSpinner />;
-  }
-
+  console.log(
+    "user",
+    user,
+    "admin",
+    admin,
+    isAuthenticated,
+    isCheckingAuth,
+    error
+  );
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-green-900 to bg-emerald-900 flex items-center justify-center relative overflow-hidden">
-      <FloatingShape
-        color="bg-green-500"
-        size="size-64"
-        top="top-[-5%]"
-        left="left-[10%]"
-        delay={0}
-      />
-      <FloatingShape
-        color="bg-emerald-500"
-        size="size-48"
-        top="top-[70%]"
-        left="left-[80%]"
-        delay={5}
-      />
-      <FloatingShape
-        color="bg-lime-500"
-        size="size-32"
-        top="top-[40%]"
-        left="left-[-10%]"
-        delay={2}
-      />
-
+    <div className={dark ? "dark" : "light"}>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Dashboard />
-            // <ProtectedRoute>
-            // </ProtectedRoute>
-          }
-        />
+        {/* Auth Routes */}
+        <Route path="/" element={<LandingPage />} />
         <Route path="/signup" element={<Signup />} />
-        <Route
-          path="/login"
-          element={
-            <Login />
-            // <RedirectAuthenticatedUser>
-            // </RedirectAuthenticatedUser>
-          }
-        />
+        <Route path="/login" element={<Login />} />
         <Route path="/verify-email" element={<EmailVerification />} />
-        <Route
-          path="/forgot-password"
-          element={
-            <ForgotPassword />
-            // <RedirectAuthenticatedUser>
-            // </RedirectAuthenticatedUser>
-          }
-        />
-        <Route
-          path="/reset-password/:token"
-          element={
-            <ResetPassword />
-            // <RedirectAuthenticatedUser>
-            // </RedirectAuthenticatedUser>
-          }
-        />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
+
+        {/* Admin Routes */}
+        {/* <Route element={<PrivateRoute allowedRoles={"admin"} />} /> */}
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/admin/tasks" element={<ManageTasks />} />
+        <Route path="/admin/create-task" element={<CreateTask />} />
+        <Route path="/admin/users" element={<ManageUsers />} />
+
+        {/* User Routes */}
+        <Route path="/user/dashboard" element={<UserDashboard />} />
+        <Route path="/user/tasks" element={<UserTasks />} />
+        <Route path="/user/task-details/:id" element={<ViewTaskDetails />} />
       </Routes>
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          className: "",
+          style: {
+            fontSize: "13px",
+          },
+        }}
+      />
     </div>
   );
 }

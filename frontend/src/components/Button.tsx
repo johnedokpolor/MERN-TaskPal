@@ -1,15 +1,11 @@
 import { motion } from "framer-motion";
 import { Loader } from "lucide-react";
-import { useAuthStore } from "../store/authStore";
+import { ContextStore } from "../store/ContextStore";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const Button: React.FC<{ text: string }> = ({ text }) => {
-  interface AuthState {
-    logout: () => Promise<void>;
-    isLoading: boolean;
-  }
-  const { isLoading, logout } = useAuthStore() as AuthState;
+  const { isLoading, logout } = ContextStore();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -32,7 +28,7 @@ const Button: React.FC<{ text: string }> = ({ text }) => {
       whileTap={{
         scale: 0.95,
       }}
-      className=" mt-4 w-full rounded-lg bg-gradient-to-r py-3 px-4 from-green-500 to-emerald-600 text-white font-bold rouneded-lg shadow-lg hover:from-green-600 to hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-200"
+      className=" mt-4 w-full rounded-lg bg-gradient-to-r py-3 px-4 from-green-700 to-emerald-700 text-white font-bold rouneded-lg shadow-lg hover:from-green-600 to hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-200"
       type="submit"
       disabled={isLoading}
       onClick={text === "Logout" ? handleLogout : undefined}
