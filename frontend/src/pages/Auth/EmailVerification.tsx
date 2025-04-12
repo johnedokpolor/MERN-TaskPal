@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { Loader } from "lucide-react";
 import { AUTH_URL, BASE_URL, ContextStore } from "../../store/ContextStore.ts";
