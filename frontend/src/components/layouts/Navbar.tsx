@@ -42,7 +42,10 @@ const Navbar: React.FC<{ activeMenu: string }> = ({ activeMenu }) => {
               x: -40,
               transition: { duration: 1, delay: 0 },
             }}
-            className="fixed left-0 lg:hidden bg-white top-[65px] z-50"
+            className="fixed left-0 lg:hidden backdrop-blur-[1px] w-full top-[65px] z-50"
+            onClick={() => {
+              setOpenSideMenu(!openSideMenu);
+            }}
           >
             <SideMenu activeMenu={activeMenu} />
           </motion.div>

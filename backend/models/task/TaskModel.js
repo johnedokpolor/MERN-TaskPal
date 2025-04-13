@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import cron from "node-cron";
+import { sendWelcomeEmail } from "../../mailtrap/nodemailer.js";
 
 // define the todo schema
 const todoSchema = new mongoose.Schema({
@@ -31,4 +33,23 @@ const taskSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// cron.schedule("0 8 * * *", async () => {
+//   const tomorrow = new Date();
+//   tomorrow.setDate(tomorrow.getDate() + 1);
+//   tomorrow.setHours(0, 0, 0, 0);
+
+//   const nextDay = new Date(tomorrow);
+//   nextDay.setDate(nextDay.getDate() + 1);
+// });
 export const Task = mongoose.model("Task", taskSchema);
+//
+//   const tomorrow = new Date();
+//   tomorrow.setDate(tomorrow.getDate() + 1);
+//   tomorrow.setHours(0, 0, 0, 0);
+
+//   const nextDay = new Date(tomorrow);
+//   nextDay.setDate(nextDay.getDate() + 1);
+//   const tasks = await Task.find({});
+//   console.log(tasks);
+// };
+// sc();

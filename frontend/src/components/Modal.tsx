@@ -21,7 +21,7 @@ const Modal: React.FC<ModalProps> = ({ children, isOpen, onClose, title }) => {
             x: 40,
             transition: { duration: 0.3, delay: 0 },
           }}
-          className="fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-full backdrop-blur-xs overflow-y-auto overflow-x-hidden bg-black/20"
+          className="fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-full backdrop-blur-xs overflow-y-auto overflow-x-hidden bg-black/10"
         >
           <div className="p-4 relative max-w-2xl w-full h-fit">
             {/* Modal content */}
