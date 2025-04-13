@@ -58,34 +58,42 @@ const ManageUsers = () => {
       {loading ? (
         <ManageUsersSkeleton />
       ) : (
-        <div>
-          <div className="my-5">
-            <div className="flex  justify-between ">
-              <h2 className="text-xl md:text-xl font-medium">Team Members</h2>
-              <button
-                className="flex   download-btn"
-                onClick={handleDownloadReport}
-              >
-                {btnLoading ? (
-                  <Loader size={20} className=" animate-spin mx-auto" />
-                ) : (
-                  <>
-                    <FileSpreadsheet className="size-5" />
-                    Download Report
-                  </>
-                )}
-              </button>
+        <div className="my-5">
+          {allUsers.length > 0 ? (
+            <div>
+              <div>
+                <div className="flex  justify-between ">
+                  <h2 className="text-xl md:text-xl font-medium">
+                    Team Members
+                  </h2>
+                  <button
+                    className="flex   download-btn"
+                    onClick={handleDownloadReport}
+                  >
+                    {btnLoading ? (
+                      <Loader size={20} className=" animate-spin mx-auto" />
+                    ) : (
+                      <>
+                        <FileSpreadsheet className="size-5" />
+                        Download Report
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                {allUsers?.map((user, index) => (
+                  <UserCard
+                    key={user._id}
+                    userInfo={user}
+                    duration={index === 0 ? 0.5 : index / 2}
+                  />
+                ))}
+              </div>
             </div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-            {allUsers?.map((user, index) => (
-              <UserCard
-                key={user._id}
-                userInfo={user}
-                duration={index === 0 ? 0.5 : index / 2}
-              />
-            ))}
-          </div>
+          ) : (
+            <p>No Users Available</p>
+          )}
         </div>
       )}
     </DashboardLayout>

@@ -32,25 +32,32 @@ const UserCard = ({
             </p>
           </div>
         </div>
+        {userInfo.role === "admin" && (
+          <div className="bg-green-700 text-white rounded-md px-3 py-0.5 justify-end">
+            Admin
+          </div>
+        )}
       </div>
 
-      <div className="flex items-end gap-3 mt-5">
-        <StatCard
-          label="Pending"
-          count={userInfo?.pendingTasks}
-          status="Pending"
-        />
-        <StatCard
-          label="In Progress"
-          count={userInfo?.inProgressTasks}
-          status="In Progress"
-        />
-        <StatCard
-          label="Completed"
-          count={userInfo?.completedTasks}
-          status="Completed"
-        />
-      </div>
+      {userInfo.role !== "admin" && (
+        <div className="flex items-end gap-3 mt-5">
+          <StatCard
+            label="Pending"
+            count={userInfo?.pendingTasks}
+            status="Pending"
+          />
+          <StatCard
+            label="In Progress"
+            count={userInfo?.inProgressTasks}
+            status="In Progress"
+          />
+          <StatCard
+            label="Completed"
+            count={userInfo?.completedTasks}
+            status="Completed"
+          />
+        </div>
+      )}
     </motion.div>
   );
 };

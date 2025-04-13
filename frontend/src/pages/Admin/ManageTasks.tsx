@@ -93,68 +93,76 @@ const ManageTasks = () => {
         <ManageTaskSkeleton />
       ) : (
         <div className="my-5">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between ">
-            <div className="flex items-center justify-between gap-3">
-              <h2 className="text-xl md:text-xl font-medium">Manage Tasks</h2>
-              <button
-                className="flex lg:hidden  download-btn"
-                onClick={handleDownloadReport}
-              >
-                {btnloading ? (
-                  <Loader size={20} className=" animate-spin mx-auto" />
-                ) : (
-                  <>
-                    <FileSpreadsheet className="size-5" />
-                    Download Report
-                  </>
+          {allTasks.length > 0 ? (
+            <div>
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between ">
+                <div className="flex items-center justify-between gap-3">
+                  <h2 className="text-xl md:text-xl font-medium">
+                    Manage Tasks
+                  </h2>
+                  <button
+                    className="flex lg:hidden  download-btn"
+                    onClick={handleDownloadReport}
+                  >
+                    {btnloading ? (
+                      <Loader size={20} className=" animate-spin mx-auto" />
+                    ) : (
+                      <>
+                        <FileSpreadsheet className="size-5" />
+                        Download Report
+                      </>
+                    )}
+                  </button>
+                </div>
+                {allTasks.length > 0 && (
+                  <div className="flex items-center  gap-3">
+                    <TaskStatusTabs
+                      tabs={tabs}
+                      activeTab={filterStatus}
+                      setActiveTab={setFilterStatus}
+                    />
+                    <button
+                      className="lg:flex hidden  download-btn"
+                      onClick={handleDownloadReport}
+                    >
+                      {btnloading ? (
+                        <Loader size={20} className=" animate-spin mx-auto" />
+                      ) : (
+                        <>
+                          <FileSpreadsheet className="size-5" />
+                          Download Report
+                        </>
+                      )}
+                    </button>
+                  </div>
                 )}
-              </button>
-            </div>
-            {allTasks.length > 0 && (
-              <div className="flex items-center  gap-3">
-                <TaskStatusTabs
-                  tabs={tabs}
-                  activeTab={filterStatus}
-                  setActiveTab={setFilterStatus}
-                />
-                <button
-                  className="lg:flex hidden  download-btn"
-                  onClick={handleDownloadReport}
-                >
-                  {btnloading ? (
-                    <Loader size={20} className=" animate-spin mx-auto" />
-                  ) : (
-                    <>
-                      <FileSpreadsheet className="size-5" />
-                      Download Report
-                    </>
-                  )}
-                </button>
               </div>
-            )}
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-            {filteredTasks.map((item: any, index) => (
-              <TaskCard
-                key={item._id}
-                title={item.title}
-                duration={index === 0 ? 0.5 : index / 2}
-                description={item.description}
-                priority={item.priority}
-                status={item.status}
-                progress={item.progress}
-                createdAt={item.createdAt}
-                dueDate={item.dueDate}
-                assignedTo={item.assignedTo.map(
-                  (item: any) => item.profileImageUrl
-                )}
-                attachmentCount={item.attachments.length}
-                completedTodoCount={item.completedTodoCount}
-                todoChecklist={item.todoChecklist.length}
-                onClick={() => handleClick(item)}
-              />
-            ))}
-          </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                {filteredTasks.map((item: any, index) => (
+                  <TaskCard
+                    key={item._id}
+                    title={item.title}
+                    duration={index === 0 ? 0.5 : index / 2}
+                    description={item.description}
+                    priority={item.priority}
+                    status={item.status}
+                    progress={item.progress}
+                    createdAt={item.createdAt}
+                    dueDate={item.dueDate}
+                    assignedTo={item.assignedTo.map(
+                      (item: any) => item.profileImageUrl
+                    )}
+                    attachmentCount={item.attachments.length}
+                    completedTodoCount={item.completedTodoCount}
+                    todoChecklist={item.todoChecklist.length}
+                    onClick={() => handleClick(item)}
+                  />
+                ))}
+              </div>
+            </div>
+          ) : (
+            <p>No Tasks Avaliable</p>
+          )}
         </div>
       )}
     </DashboardLayout>

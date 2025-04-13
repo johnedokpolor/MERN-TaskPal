@@ -17,7 +17,7 @@ const SelectUsers: React.FC<SelectUsersProps> = ({
   const getAllUsers = async () => {
     try {
       const response = await axios.get(`${BASE_URL}/${USER_URL}`);
-      setAllUsers(response.data);
+      setAllUsers(response.data.filter((user: any) => user.role !== "admin"));
     } catch (error) {
       console.log("Error Fetching users", error);
     }

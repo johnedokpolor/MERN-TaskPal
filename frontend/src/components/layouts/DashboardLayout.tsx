@@ -16,8 +16,16 @@ const DashboardLayout: React.FC<{
   useEffect(() => {
     if (!isAuthenticated && !user) {
       navigate("/login", { replace: true });
-    } else if (!isAuthenticated && !admin) {
-      navigate("/login", { replace: true });
+    }
+    if (user) {
+      if (!user?.isVerified) {
+        navigate("/verify-email", { replace: true });
+      }
+    }
+    if (admin) {
+      if (!admin?.isVerified) {
+        navigate("/verify-email", { replace: true });
+      }
     }
   }, [user, admin]);
 

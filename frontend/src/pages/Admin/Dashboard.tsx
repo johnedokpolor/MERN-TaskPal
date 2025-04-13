@@ -3,7 +3,7 @@ import moment from "moment";
 import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import { ContextStore } from "../../store/ContextStore";
+import { BASE_URL, ContextStore, TASK_URL } from "../../store/ContextStore";
 import DashboardLayout from "../../components/layouts/DashboardLayout";
 import InfoCard from "../../components/Cards/InfoCard";
 import { addThousandsSeparator } from "../../utils/helper";
@@ -12,6 +12,7 @@ import { ChartData } from "../../utils/interfaces";
 import CustomPieChart from "../../components/Charts/CustomPieChart";
 import CustomBarChart from "../../components/Charts/CustomBarChart";
 import DashboardSkeleton from "../../components/Skeletons/DashboardSkeleton";
+import axios from "axios";
 
 const COLORS = ["#FFC107", "#03A9F4", "#4CAF50"];
 
@@ -24,11 +25,15 @@ const Dashboard = () => {
     Array<{ priority: string; count: number }>
   >([]);
   [];
+  const [allTasks, setAllTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
+      const response = await axios.get(`${BASE_URL}/${TASK_URL}`);
+
+      setAllTasks(response.data.tasks);
       await getDashboardData();
       setLoading(false);
     };
@@ -64,6 +69,7 @@ const Dashboard = () => {
     ];
     setBarChartData(PriorityLevelData);
   };
+  console.log(pieChartData, barChartData);
 
   return (
     <div>
@@ -133,7 +139,11 @@ const Dashboard = () => {
                 <div className="flex items-center justify-between">
                   <h5 className="font-medium">Task Distrubution</h5>
                 </div>
-                <CustomPieChart data={pieChartData} colors={COLORS} />
+                {allTasks.length > 0 ? (
+                  <CustomPieChart data={pieChartData} colors={COLORS} />
+                ) : (
+                  <p>No Tasks Available</p>
+                )}
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, x: 40 }}
@@ -147,7 +157,12 @@ const Dashboard = () => {
                 <div className="flex items-center justify-between">
                   <h5 className="font-medium">Priority Distrubution</h5>
                 </div>
-                <CustomBarChart data={barChartData} />
+
+                {allTasks.length > 0 ? (
+                  <CustomBarChart data={barChartData} />
+                ) : (
+                  <p>No Tasks Available</p>
+                )}
               </motion.div>
               <div className="md:col-span-2">
                 <div className="card">

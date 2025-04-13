@@ -1,14 +1,17 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
+import icon from "../../public/nexa-icon.png";
 
 const LoadingSpinner = () => {
   return (
-    <div className="min-h-screen bg-white dark:bg-[#1f1f1f] flex items-center justify-center relative overflow-hidden">
+    <div className="min-h-screen bg-[whitesmoke] dark:bg-[#1f1f1f] flex items-center justify-center relative overflow-hidden">
       {/* Simple Loading Spinner */}
-      <motion.div
-        className="w-16 h-16 border-4 border-t-4 border-t-green-600 border-green-400 rounded-full"
-        animate={{ rotate: 360 }}
-        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-      />
+      <motion.div>
+        <img
+          src={icon}
+          className="size-18  animate-pulse  rounded-full"
+          alt=""
+        />
+      </motion.div>
     </div>
   );
 };
