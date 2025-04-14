@@ -17,7 +17,6 @@ const Login = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUser((prev: any) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  console.log(user);
 
   const {
     login,

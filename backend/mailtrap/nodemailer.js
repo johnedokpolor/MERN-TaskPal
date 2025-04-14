@@ -24,7 +24,7 @@ export const sendVerificationEmail = (
   tokenExpiry
 ) => {
   var mailOptions = {
-    from: "johnedokpolor@gmail.com",
+    from: '"Nexa" johnedokpolor@gmail.com',
     to: email,
     subject: "Verification Token from Nexa",
     html: VERIFICATION_EMAIL_TEMPLATE.replace("{user}", name)
@@ -41,7 +41,7 @@ export const sendVerificationEmail = (
 };
 export const sendWelcomeEmail = (email, name) => {
   var mailOptions = {
-    from: "johnedokpolor@gmail.com",
+    from: '"Nexa" johnedokpolor@gmail.com',
     to: email,
     subject: "Welcome to Nexa",
     html: WELCOME_EMAIL_TEMPLATE.replace("{user}", name),
@@ -56,7 +56,7 @@ export const sendWelcomeEmail = (email, name) => {
 };
 export const sendPasswordResetEmail = (email, name, resetURL, tokenExpiry) => {
   var mailOptions = {
-    from: "johnedokpolor@gmail.com",
+    from: '"Nexa" johnedokpolor@gmail.com',
     to: email,
     subject: "Password Reset",
     html: PASSWORD_RESET_REQUEST_TEMPLATE.replace("{user}", name)
@@ -73,7 +73,7 @@ export const sendPasswordResetEmail = (email, name, resetURL, tokenExpiry) => {
 };
 export const sendResetSuccessEmail = (email, name) => {
   var mailOptions = {
-    from: "johnedokpolor@gmail.com",
+    from: '"Nexa" johnedokpolor@gmail.com',
     to: email,
     subject: "Password Reset Successful",
     html: PASSWORD_RESET_SUCCESS_TEMPLATE.replace("{user}", name),
@@ -88,7 +88,7 @@ export const sendResetSuccessEmail = (email, name) => {
 };
 export const sendLoginEmail = (email, name, loginDate) => {
   var mailOptions = {
-    from: "johnedokpolor@gmail.com",
+    from: '"Nexa" johnedokpolor@gmail.com',
     to: email,
     subject: "Login Notification from Nexa",
     html: LOGIN_EMAIL_TEMPLATE.replace("{loginDate}", loginDate).replace(
@@ -116,7 +116,7 @@ export const sendTaskEmail = (
   admin
 ) => {
   var mailOptions = {
-    from: "johnedokpolor@gmail.com",
+    from: '"Nexa" johnedokpolor@gmail.com',
     to: email,
     subject: "Task Notification from Nexa",
     html: ASSIGNED_TASK_TEMPLATE.replace("{title}", title)

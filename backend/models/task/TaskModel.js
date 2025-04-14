@@ -33,23 +33,24 @@ const taskSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// cron.schedule("0 8 * * *", async () => {
-//   const tomorrow = new Date();
-//   tomorrow.setDate(tomorrow.getDate() + 1);
-//   tomorrow.setHours(0, 0, 0, 0);
+cron.schedule("* * * * *", async () => {
+  const tomorrow = new Date();
+  tomorrow.setHours(tomorrow.getHours() + 1); // Nigerian timezone +
+  // tomorrow.setDate(tomorrow.getDate() + 1);
+  // tomorrow.setHours(0, 0, 0, 0);
+  console.log(tomorrow);
 
-//   const nextDay = new Date(tomorrow);
-//   nextDay.setDate(nextDay.getDate() + 1);
-// });
+  const nextDay = new Date(tomorrow);
+  nextDay.setDate(nextDay.getDate() + 1);
+  // console.log(nextDay);
+
+  const tasks = await Task.find({
+    dueDate: { $gte: tomorrow, $lt: nextDay },
+    completed: false,
+  }).populate("assignedTo", "name email");
+  const dueTasks = tasks.map((task) => {
+    task.name, task.dueDate, task.assignedTo;
+  });
+  console.log(dueTasks);
+});
 export const Task = mongoose.model("Task", taskSchema);
-//
-//   const tomorrow = new Date();
-//   tomorrow.setDate(tomorrow.getDate() + 1);
-//   tomorrow.setHours(0, 0, 0, 0);
-
-//   const nextDay = new Date(tomorrow);
-//   nextDay.setDate(nextDay.getDate() + 1);
-//   const tasks = await Task.find({});
-//   console.log(tasks);
-// };
-// sc();

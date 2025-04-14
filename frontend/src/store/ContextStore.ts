@@ -2,8 +2,8 @@ import { create } from "zustand";
 import axios, { AxiosError } from "axios";
 import { ContextState } from "../utils/interfaces";
 
-// export const BASE_URL = "http://localhost:1000"; // development server url
-export const BASE_URL = "https://mern-taskpal-backend.onrender.com"; // production server url
+export const BASE_URL = "http://localhost:1000"; // development server url
+// export const BASE_URL = "https://mern-taskpal-backend.onrender.com"; // production server url
 export const AUTH_URL = "api/auth";
 export const TASK_URL = "api/tasks";
 export const USER_URL = "api/users";

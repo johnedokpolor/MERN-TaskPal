@@ -37,7 +37,6 @@ const Signup = () => {
   };
 
   const navigate = useNavigate();
-  console.log(user);
 
   // Initialize the signup function from the ContextStore hook
   const {

@@ -9,6 +9,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import "dotenv/config";
 import { fileURLToPath } from "url";
+import { sendLoginEmail } from "./mailtrap/nodemailer.js";
 
 const app = express();
 const port = process.env.PORT;

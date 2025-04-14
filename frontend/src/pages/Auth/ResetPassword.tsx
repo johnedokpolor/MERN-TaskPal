@@ -57,7 +57,6 @@ const ResetPassword = () => {
 
   const togglePassword = () => {
     setVisible((prev) => !prev);
-    console.log("clicked");
   };
   return (
     <AuthLayout>
