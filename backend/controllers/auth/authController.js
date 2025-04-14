@@ -17,9 +17,6 @@ import { formatDate } from "../../utils/date.js";
 //   sendWelcomeEmail,
 // } from "../mailtrap/emails.js";
 
-const timezone = new Date();
-// timezone.setHours(timezone.getHours() + 1); // adds one hour for nigerian timezone
-
 // check if user is  authenticated
 export const checkAuth = async (req, res) => {
   try {
@@ -66,7 +63,7 @@ export const signup = async (req, res) => {
     const verificationToken = Math.floor(
       100000 + Math.random() * 900000
     ).toString();
-    const tokenExpiry = formatDate(timezone + 15 * 60 * 1000); // expires in 15 minutes
+    const tokenExpiry = formatDate(Date.now() + 15 * 60 * 1000); // expires in 15 minutes
 
     //determine user role: Admin if correct token is provided otherwise user
     let role = "user";
@@ -85,7 +82,7 @@ export const signup = async (req, res) => {
       role,
       profileImageUrl,
       verificationToken,
-      verificationTokenExpiresAt: timezone + 15 * 60 * 1000, // token expires after 15 minutes
+      verificationTokenExpiresAt: Date.now() + 15 * 60 * 1000, // token expires after 15 minutes
     });
 
     //Generates jsonwebtoken
@@ -132,11 +129,11 @@ export const sendToken = async (req, res) => {
     const verificationToken = Math.floor(
       100000 + Math.random() * 900000
     ).toString();
-    const tokenExpiry = formatDate(timezone + 15 * 60 * 1000);
+    const tokenExpiry = formatDate(Date.now() + 15 * 60 * 1000);
 
     // Sets verification token to Database
     user.verificationToken = verificationToken;
-    user.verificationTokenExpiresAt = timezone + 15 * 60 * 1000;
+    user.verificationTokenExpiresAt = Date.now() + 15 * 60 * 1000;
 
     // Await to Send VerificationToken to User Email
     await sendVerificationEmail(
@@ -189,7 +186,7 @@ export const login = async (req, res) => {
     //Generates jsonwebtoken
     generateTokenAndSetCookie(res, user._id);
 
-    const lastLoginDate = formatDate(timezone);
+    const lastLoginDate = formatDate(Date.now());
 
     // Updates user's last login and saves to the database
     user.lastLoginDate = lastLoginDate;
@@ -234,7 +231,7 @@ export const verifyEmail = async (req, res) => {
     // Finds the User with Verification Code and Expiry
     const user = await User.findOne({
       verificationToken: code,
-      verificationTokenExpiresAt: { $gt: timezone },
+      verificationTokenExpiresAt: { $gt: Date.now() },
     });
 
     // Return Error if User Doesn't exist
@@ -282,7 +279,7 @@ export const forgotPassword = async (req, res) => {
 
     // define necessary variables
     const resetPasswordToken = crypto.randomBytes(50).toString("hex");
-    const resetPasswordExpiresAt = timezone + 1 * 60 * 60 * 1000;
+    const resetPasswordExpiresAt = Date.now() + 1 * 60 * 60 * 1000;
     const tokenExpiry = formatDate(resetPasswordExpiresAt);
 
     // update user
@@ -314,7 +311,7 @@ export const resetPassword = async (req, res) => {
     // Finds the User with Verification Code and Expiry
     const user = await User.findOne({
       resetPasswordToken: token,
-      resetPasswordExpiresAt: { $gt: timezone },
+      resetPasswordExpiresAt: { $gt: Date.now() },
     });
 
     // Return Error if User Doesn't exist
