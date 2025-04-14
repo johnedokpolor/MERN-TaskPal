@@ -35,9 +35,8 @@ const taskSchema = new mongoose.Schema(
 
 cron.schedule("* * * * *", async () => {
   const tomorrow = new Date();
-  tomorrow.setHours(tomorrow.getHours() + 1); // Nigerian timezone +
-  // tomorrow.setDate(tomorrow.getDate() + 1);
-  // tomorrow.setHours(0, 0, 0, 0);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  tomorrow.setHours(0, 0, 0, 0);
   console.log(tomorrow);
 
   const nextDay = new Date(tomorrow);
@@ -46,11 +45,20 @@ cron.schedule("* * * * *", async () => {
 
   const tasks = await Task.find({
     dueDate: { $gte: tomorrow, $lt: nextDay },
-    completed: false,
+    // find tasks that the status isnt completed
+    status: { $ne: "Completed" },
   }).populate("assignedTo", "name email");
-  const dueTasks = tasks.map((task) => {
-    task.name, task.dueDate, task.assignedTo;
-  });
-  console.log(dueTasks);
+  const dueTasks = tasks.map((task) => ({
+    title: task.title,
+    dueDate: task.dueDate,
+    assignedTo: task.assignedTo.map((user) => ({
+      title: task.title,
+      description: task.description,
+      name: user.name,
+      email: user.email,
+    })),
+  }));
+  const assignedUsers = dueTasks.map((task) => task.assignedTo);
+  console.log(assignedUsers);
 });
 export const Task = mongoose.model("Task", taskSchema);

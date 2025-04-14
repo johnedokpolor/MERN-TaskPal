@@ -6,6 +6,7 @@ import {
   PASSWORD_RESET_SUCCESS_TEMPLATE,
   LOGIN_EMAIL_TEMPLATE,
   ASSIGNED_TASK_TEMPLATE,
+  TASK_REMINDER_TEMPLATE,
 } from "./emailTemplates.js";
 
 var transporter = nodemailer.createTransport({
@@ -127,6 +128,23 @@ export const sendTaskEmail = (
       .replace("{dueDate}", formatedDate)
       .replace("{loginURL}", url)
       .replace("{admin}", admin),
+  };
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  });
+};
+export const sendTaskReminderEmail = (email, name, title, description) => {
+  var mailOptions = {
+    from: '"Nexa" johnedokpolor@gmail.com',
+    to: email,
+    subject: "Task Notification from Nexa",
+    html: TASK_REMINDER_TEMPLATE.replace("{title}", title)
+      .replace("{user}", name)
+      .replace("{description}", description),
   };
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {

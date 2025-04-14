@@ -228,3 +228,67 @@ export const ASSIGNED_TASK_TEMPLATE = `
   </body>
 </html>
 `;
+export const TASK_REMINDER_TEMPLATE = `
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Reminder</title>
+  </head>
+  <body
+    style="
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 100%;
+      margin: 0 auto;
+    "
+  >
+    <div
+      style="
+        background: linear-gradient(to right, #4caf50, #45a049);
+        padding: 20px;
+        text-align: center;
+      "
+    >
+      <h1 style="color: white; margin: 0">Task Reminder</h1>
+    </div>
+    <div
+      style="
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 0 0 5px 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      "
+    >
+      <p>Hello, {user}</p>
+      <p>
+        Just a quick reminder that your task with the following details will be
+        due tomorrow:
+      </p>
+      <ul>
+        <li>Title: {title}</li>
+        <li>Description: {description}</li>
+      </ul>
+      <p>
+        Please ensure all necessary actions are completed by the deadline. If
+        you need assistance or have any questions, feel free to reach out.
+      </p>
+      <div style="text-align: center; margin: 30px 0"></div>
+
+      <p>Best regards,<br />Nexa Team.</p>
+    </div>
+    <div
+      style="
+        text-align: center;
+        margin-top: 20px;
+        color: #888;
+        font-size: 0.8em;
+      "
+    >
+      <p>This is an automated message, please do not reply to this email.</p>
+    </div>
+  </body>
+</html>
+`;
