@@ -5,7 +5,7 @@ export const formatDate = (dateValue) => {
     return "Invalid Date";
   }
   // Return the formatted date
-  return date.toLocaleString("en-US", {
+  return date.toLocaleString("en-NG", {
     year: "numeric",
     month: "short",
     day: "numeric",
