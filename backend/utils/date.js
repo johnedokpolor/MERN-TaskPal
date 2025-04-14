@@ -6,6 +6,7 @@ export const formatDate = (dateValue) => {
   }
   // Return the formatted date
   return date.toLocaleString("en-NG", {
+    timeZone: "Africa/Lagos",
     year: "numeric",
     month: "short",
     day: "numeric",
