@@ -113,7 +113,7 @@ export const signup = async (req, res) => {
   }
 };
 
-//reset email verification token
+//resend email verification token
 export const sendToken = async (req, res) => {
   try {
     const user = await User.findById(req.user._id).select("-password");
@@ -279,7 +279,7 @@ export const forgotPassword = async (req, res) => {
 
     // define necessary variables
     const resetPasswordToken = crypto.randomBytes(50).toString("hex");
-    const resetPasswordExpiresAt = Date.now() + 1 * 60 * 60 * 1000;
+    const resetPasswordExpiresAt = Date.now() + 1 * 60 * 60 * 1000; // expires in an hour
     const tokenExpiry = formatDate(resetPasswordExpiresAt);
 
     // update user

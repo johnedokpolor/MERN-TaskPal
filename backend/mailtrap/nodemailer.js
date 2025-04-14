@@ -141,7 +141,7 @@ export const sendTaskReminderEmail = (email, name, title, description) => {
   var mailOptions = {
     from: '"Nexa" johnedokpolor@gmail.com',
     to: email,
-    subject: "Task Notification from Nexa",
+    subject: "Task Reminder from Nexa",
     html: TASK_REMINDER_TEMPLATE.replace("{title}", title)
       .replace("{user}", name)
       .replace("{description}", description),

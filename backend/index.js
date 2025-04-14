@@ -10,6 +10,7 @@ import cors from "cors";
 import "dotenv/config";
 import { fileURLToPath } from "url";
 import { sendLoginEmail } from "./mailtrap/nodemailer.js";
+import taskReminder from "./utils/reminder.js";
 
 const app = express();
 const port = process.env.PORT;
@@ -50,5 +51,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.listen(port, () => {
   connectDB().then(() => {
     console.log(`Server is listening on port ${port}...`);
+    // set task reminder
+    taskReminder();
   });
 });

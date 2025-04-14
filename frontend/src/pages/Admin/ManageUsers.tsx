@@ -13,6 +13,8 @@ const ManageUsers = () => {
   // This should be replaced with actual user data fetching logic
   const [btnLoading, setBtnLoading] = useState(false);
   const [loading, setLoading] = useState(true);
+  const admins = allUsers.filter((user) => user.role === "admin");
+  const users = allUsers.filter((user) => user.role === "user");
 
   const getAllUsers = async () => {
     try {
@@ -82,7 +84,16 @@ const ManageUsers = () => {
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-                {allUsers?.map((user, index) => (
+                {admins?.map((user, index) => (
+                  <UserCard
+                    key={user._id}
+                    userInfo={user}
+                    duration={index === 0 ? 0.5 : index / 2}
+                  />
+                ))}
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                {users?.map((user, index) => (
                   <UserCard
                     key={user._id}
                     userInfo={user}

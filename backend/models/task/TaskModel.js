@@ -1,6 +1,4 @@
 import mongoose from "mongoose";
-import cron from "node-cron";
-import { sendWelcomeEmail } from "../../mailtrap/nodemailer.js";
 
 // define the todo schema
 const todoSchema = new mongoose.Schema({
@@ -33,32 +31,4 @@ const taskSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-cron.schedule("* * * * *", async () => {
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  tomorrow.setHours(0, 0, 0, 0);
-  console.log(tomorrow);
-
-  const nextDay = new Date(tomorrow);
-  nextDay.setDate(nextDay.getDate() + 1);
-  // console.log(nextDay);
-
-  const tasks = await Task.find({
-    dueDate: { $gte: tomorrow, $lt: nextDay },
-    // find tasks that the status isnt completed
-    status: { $ne: "Completed" },
-  }).populate("assignedTo", "name email");
-  const dueTasks = tasks.map((task) => ({
-    title: task.title,
-    dueDate: task.dueDate,
-    assignedTo: task.assignedTo.map((user) => ({
-      title: task.title,
-      description: task.description,
-      name: user.name,
-      email: user.email,
-    })),
-  }));
-  const assignedUsers = dueTasks.map((task) => task.assignedTo);
-  console.log(assignedUsers);
-});
 export const Task = mongoose.model("Task", taskSchema);
