@@ -34,7 +34,6 @@ function App() {
   }, [dark]);
 
   useEffect(() => {
-    console.log("checking auth");
     checkAuth();
   }, [checkAuth]);
   console.log(

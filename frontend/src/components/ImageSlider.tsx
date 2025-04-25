@@ -45,7 +45,7 @@ const ImageSlider = () => {
   let screenSize = `translateX(-${(activeSlide * 100) / 1}%)`;
 
   return (
-    <div className="overflow-hidden  relative h-full rounded-2xl">
+    <div className="overflow-hidden  relative  rounded-2xl">
       <div
         className="flex transition-transform duration-500 ease-in-out"
         style={{

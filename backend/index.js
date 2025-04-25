@@ -9,7 +9,6 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import "dotenv/config";
 import { fileURLToPath } from "url";
-import { sendLoginEmail } from "./mailtrap/nodemailer.js";
 import taskReminder from "./utils/reminder.js";
 
 const app = express();

@@ -1,5 +1,5 @@
 import bcryptjs from "bcryptjs";
-import crypto from "crypto";
+import { randomBytes } from "node:crypto";
 import { User } from "../../models/user/userModel.js";
 import { generateTokenAndSetCookie } from "../../utils/generateTokenAndSetCookie.js";
 import {
@@ -278,7 +278,7 @@ export const forgotPassword = async (req, res) => {
     }
 
     // define necessary variables
-    const resetPasswordToken = crypto.randomBytes(50).toString("hex");
+    const resetPasswordToken = randomBytes(50).toString("hex");
     const resetPasswordExpiresAt = Date.now() + 1 * 60 * 60 * 1000; // expires in an hour
     const tokenExpiry = formatDate(resetPasswordExpiresAt);
 
