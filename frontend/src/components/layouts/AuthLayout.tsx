@@ -20,7 +20,7 @@ const AuthLayout = (props: Props) => {
       <div className="hidden md:flex w-[45vw] h-fit  rounded-2xl  items-center justify-center  overflow-hidden">
         <ImageSlider />
       </div>
-      <p className="pb-2 absolute bottom-0 text-center font-bold">
+      <p className="pb-2 absolute bottom-0 text-center text-black font-bold">
         &copy;2025 - {new Date().getFullYear()} Made with 💓 by GLtech
       </p>
     </div>
