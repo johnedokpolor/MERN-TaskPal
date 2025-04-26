@@ -1,10 +1,618 @@
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { CheckCircle, Clock, Users, Calendar, ArrowRight } from "lucide-react";
+import logo from "../../public/nexa-icon.png";
+import { Link } from "react-router-dom";
 
-const LandingPage = () => {
-  const navigate = useNavigate();
+export default function LandingPage() {
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Header/Navigation */}
+      <header className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <div className="flex items-center">
+              <img className="rounded-sm mr-2" src={logo} alt="Nexa Logo" />
 
-  navigate("/login");
-  return <div>LandingPage</div>;
-};
+              <span className="text-xl font-bold text-gray-800">Nexa</span>
+            </div>
+            <nav className="hidden md:flex space-x-8">
+              <a href="#features" className="text-gray-600 hover:text-gray-900">
+                Features
+              </a>
+              <a href="#pricing" className="text-gray-600 hover:text-gray-900">
+                Pricing
+              </a>
+              <a
+                href="#testimonials"
+                className="text-gray-600 hover:text-gray-900"
+              >
+                Testimonials
+              </a>
+              <a href="#faq" className="text-gray-600 hover:text-gray-900">
+                FAQ
+              </a>
+            </nav>
+            <div className="hidden md:flex items-center space-x-4">
+              <Link to={"/login"} className="text-gray-600 hover:text-gray-900">
+                Login
+              </Link>
+              <Link
+                to={"/register"}
+                className="bg-emerald-600 text-white px-4 py-2 rounded-md hover:bg-emerald-700 transition-colors"
+              >
+                Sign Up Free
+              </Link>
+            </div>
+            <button className="md:hidden text-gray-500">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
 
-export default LandingPage;
+      {/* Hero Section */}
+      <section className="bg-white pt-16 pb-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="lg:grid lg:grid-cols-12 lg:gap-8">
+            <div className="lg:col-span-6 xl:col-span-5">
+              <h1 className="mt-4 text-4xl tracking-tight font-extrabold text-gray-900 sm:mt-5 sm:text-5xl lg:mt-6">
+                Simplify Your Workflow with Nexa
+              </h1>
+              <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl">
+                Streamline project tracking, team collaboration, and task
+                management in one intuitive platform. Boost productivity and
+                keep your team organized with Nexa.
+              </p>
+              <div className="mt-8 sm:mt-12">
+                <form className="sm:max-w-xl sm:mx-auto lg:mx-0">
+                  <div className="sm:flex">
+                    <div className="min-w-0 flex-1">
+                      <label htmlFor="email" className="sr-only">
+                        Email address
+                      </label>
+                      <input
+                        id="email"
+                        type="email"
+                        placeholder="Enter your email"
+                        className="block w-full px-4 py-3 outline-0 text-black rounded-md border border-gray-300 shadow-sm focus:ring-emerald-500 focus:border-emerald-500"
+                      />
+                    </div>
+                    <div className="mt-3 sm:mt-0 sm:ml-3">
+                      <button
+                        type="submit"
+                        className="block w-full py-3 px-6 rounded-md shadow bg-emerald-600 text-white font-medium hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
+                      >
+                        Start Free Trial
+                      </button>
+                    </div>
+                  </div>
+                  <p className="mt-3 text-sm text-gray-500">
+                    14-day free trial. No credit card required.
+                  </p>
+                </form>
+              </div>
+            </div>
+            <div className="mt-12 relative sm:max-w-lg lg:mt-0 lg:col-span-6 xl:col-span-7">
+              <div className="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
+                <img
+                  className="w-full"
+                  src="/api/placeholder/600/400"
+                  alt="Screenshot of Nexa dashboard"
+                  width="600"
+                  height="400"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold text-gray-900">
+              Everything you need to manage your team's tasks
+            </h2>
+            <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
+              Nexa provides essential tools for efficient task management and
+              team collaboration.
+            </p>
+          </div>
+
+          <div className="mt-16">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+              <div className="bg-white overflow-hidden shadow rounded-lg">
+                <div className="px-4 py-5 sm:p-6">
+                  <div className="bg-emerald-100 rounded-full w-12 h-12 flex items-center justify-center text-emerald-600 mb-4">
+                    <CheckCircle size={24} />
+                  </div>
+                  <h3 className="text-lg font-medium text-gray-900">
+                    Task Management
+                  </h3>
+                  <p className="mt-2 text-base text-gray-500">
+                    Create, assign, and track tasks with ease. Set priorities,
+                    deadlines, and monitor progress.
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-white overflow-hidden shadow rounded-lg">
+                <div className="px-4 py-5 sm:p-6">
+                  <div className="bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center text-blue-600 mb-4">
+                    <Users size={24} />
+                  </div>
+                  <h3 className="text-lg font-medium text-gray-900">
+                    Team Collaboration
+                  </h3>
+                  <p className="mt-2 text-base text-gray-500">
+                    Work together seamlessly with comments, file sharing, and
+                    real-time updates.
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-white overflow-hidden shadow rounded-lg">
+                <div className="px-4 py-5 sm:p-6">
+                  <div className="bg-purple-100 rounded-full w-12 h-12 flex items-center justify-center text-purple-600 mb-4">
+                    <Calendar size={24} />
+                  </div>
+                  <h3 className="text-lg font-medium text-gray-900">
+                    Project Timeline
+                  </h3>
+                  <p className="mt-2 text-base text-gray-500">
+                    Visualize project schedules, milestones, and deadlines with
+                    intuitive timeline views.
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-white overflow-hidden shadow rounded-lg">
+                <div className="px-4 py-5 sm:p-6">
+                  <div className="bg-amber-100 rounded-full w-12 h-12 flex items-center justify-center text-amber-600 mb-4">
+                    <Clock size={24} />
+                  </div>
+                  <h3 className="text-lg font-medium text-gray-900">
+                    Time Tracking
+                  </h3>
+                  <p className="mt-2 text-base text-gray-500">
+                    Monitor time spent on tasks and projects to improve
+                    productivity and planning.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold text-gray-900">
+              How Nexa Works
+            </h2>
+            <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
+              Get started in minutes with our simple onboarding process.
+            </p>
+          </div>
+
+          <div className="mt-16">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+              <div className="text-center">
+                <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-emerald-100 text-emerald-900 text-2xl font-bold">
+                  1
+                </div>
+                <h3 className="mt-6 text-lg font-medium text-gray-900">
+                  Create Your Workspace
+                </h3>
+                <p className="mt-2 text-base text-gray-500">
+                  Sign up and create your team workspace in just a few clicks.
+                </p>
+              </div>
+
+              <div className="text-center">
+                <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-emerald-100 text-emerald-900 text-2xl font-bold">
+                  2
+                </div>
+                <h3 className="mt-6 text-lg font-medium text-gray-900">
+                  Invite Team Members
+                </h3>
+                <p className="mt-2 text-base text-gray-500">
+                  Add your colleagues and assign roles to start collaborating.
+                </p>
+              </div>
+
+              <div className="text-center">
+                <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-emerald-100 text-emerald-900 text-2xl font-bold">
+                  3
+                </div>
+                <h3 className="mt-6 text-lg font-medium text-gray-900">
+                  Start Managing Tasks
+                </h3>
+                <p className="mt-2 text-base text-gray-500">
+                  Create projects, assign tasks, and track progress efficiently.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonial */}
+      <section id="testimonials" className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold text-gray-900">
+              Trusted by Teams Worldwide
+            </h2>
+          </div>
+          <div className="mt-12 max-w-3xl mx-auto">
+            <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+              <div className="px-6 py-8">
+                <div className="flex items-center">
+                  <div className="h-12 w-12 rounded-full overflow-hidden bg-gray-200">
+                    <img
+                      src="/api/placeholder/48/48"
+                      alt="User"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="text-lg font-bold">Sarah Johnson</h4>
+                    <p className="text-gray-600">Project Manager, TechCorp</p>
+                  </div>
+                </div>
+                <blockquote className="mt-6 text-gray-700">
+                  <p className="text-lg italic">
+                    "Nexa has transformed how our team manages projects. The
+                    intuitive interface and powerful features have increased our
+                    productivity by 30%. I can't imagine going back to our old
+                    workflow."
+                  </p>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section id="pricing" className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold text-gray-900">
+              Simple, Transparent Pricing
+            </h2>
+            <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
+              Choose the plan that's right for your team.
+            </p>
+          </div>
+
+          <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3">
+            <div className="bg-gray-50 rounded-lg shadow-sm overflow-hidden">
+              <div className="p-6">
+                <h3 className="text-lg font-medium text-gray-900">Starter</h3>
+                <p className="mt-4">
+                  <span className="text-3xl text-gray-500 font-bold">$9</span>
+                  <span className="text-gray-500">/month per user</span>
+                </p>
+                <p className="mt-4 text-gray-500">
+                  Perfect for small teams getting started.
+                </p>
+                <ul className="mt-6 space-y-4">
+                  <li className="flex items-start">
+                    <CheckCircle
+                      size={20}
+                      className="flex-shrink-0 text-green-500"
+                    />
+                    <span className="ml-3 text-gray-500">Unlimited tasks</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle
+                      size={20}
+                      className="flex-shrink-0 text-green-500"
+                    />
+                    <span className="ml-3 text-gray-500">Basic reporting</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle
+                      size={20}
+                      className="flex-shrink-0 text-green-500"
+                    />
+                    <span className="ml-3 text-gray-500">5 team members</span>
+                  </li>
+                </ul>
+                <div className="mt-8">
+                  <a
+                    href="#"
+                    className="block w-full bg-emerald-600 text-white text-center px-4 py-2 rounded-md hover:bg-emerald-700"
+                  >
+                    Get Started
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden border-2 border-emerald-500 relative">
+              <div className="absolute top-0 right-0 bg-emerald-500 text-white px-3 py-1 text-sm font-semibold">
+                POPULAR
+              </div>
+              <div className="p-6">
+                <h3 className="text-lg font-medium text-gray-900">
+                  Professional
+                </h3>
+                <p className="mt-4">
+                  <span className="text-3xl text-gray-500 font-bold">$19</span>
+                  <span className="text-gray-500">/month per user</span>
+                </p>
+                <p className="mt-4 text-gray-500">
+                  Great for growing teams needing more features.
+                </p>
+                <ul className="mt-6 space-y-4">
+                  <li className="flex items-start">
+                    <CheckCircle
+                      size={20}
+                      className="flex-shrink-0 text-green-500"
+                    />
+                    <span className="ml-3 text-gray-500">
+                      Everything in Starter
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle
+                      size={20}
+                      className="flex-shrink-0 text-green-500"
+                    />
+                    <span className="ml-3 text-gray-500">
+                      Advanced reporting
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle
+                      size={20}
+                      className="flex-shrink-0 text-green-500"
+                    />
+                    <span className="ml-3 text-gray-500">
+                      Unlimited team members
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle
+                      size={20}
+                      className="flex-shrink-0 text-green-500"
+                    />
+                    <span className="ml-3 text-gray-500">Time tracking</span>
+                  </li>
+                </ul>
+                <div className="mt-8">
+                  <a
+                    href="#"
+                    className="block w-full bg-emerald-600 text-white text-center px-4 py-2 rounded-md hover:bg-emerald-700"
+                  >
+                    Get Started
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gray-50 rounded-lg shadow-sm overflow-hidden">
+              <div className="p-6">
+                <h3 className="text-lg font-medium text-gray-900">
+                  Enterprise
+                </h3>
+                <p className="mt-4">
+                  <span className="text-3xl text-gray-500 font-bold">$39</span>
+                  <span className="text-gray-500">/month per user</span>
+                </p>
+                <p className="mt-4 text-gray-500">
+                  For organizations needing advanced features.
+                </p>
+                <ul className="mt-6 space-y-4">
+                  <li className="flex items-start">
+                    <CheckCircle
+                      size={20}
+                      className="flex-shrink-0 text-green-500"
+                    />
+                    <span className="ml-3 text-gray-500">
+                      Everything in Professional
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle
+                      size={20}
+                      className="flex-shrink-0 text-green-500"
+                    />
+                    <span className="ml-3 text-gray-500">
+                      Custom integrations
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle
+                      size={20}
+                      className="flex-shrink-0 text-green-500"
+                    />
+                    <span className="ml-3 text-gray-500">
+                      Dedicated support
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle
+                      size={20}
+                      className="flex-shrink-0 text-green-500"
+                    />
+                    <span className="ml-3 text-gray-500">
+                      Advanced security
+                    </span>
+                  </li>
+                </ul>
+                <div className="mt-8">
+                  <a
+                    href="#"
+                    className="block w-full bg-emerald-600 text-white text-center px-4 py-2 rounded-md hover:bg-emerald-700"
+                  >
+                    Contact Sales
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action */}
+      <section className="bg-emerald-700">
+        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
+          <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+            <span className="block">Ready to streamline your workflow?</span>
+            <span className="block text-emerald-200">
+              Start your free trial today.
+            </span>
+          </h2>
+          <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0">
+            <div className="inline-flex rounded-md shadow">
+              <a
+                href="#"
+                className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-emerald-600 bg-white hover:bg-emerald-50"
+              >
+                Get started
+                <ArrowRight size={20} className="ml-2" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-800">
+        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+              <h3 className="text-sm font-semibold text-gray-300 tracking-wider uppercase">
+                Product
+              </h3>
+              <ul className="mt-4 space-y-4">
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white">
+                    Features
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white">
+                    Pricing
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white">
+                    Security
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white">
+                    Roadmap
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-300 tracking-wider uppercase">
+                Resources
+              </h3>
+              <ul className="mt-4 space-y-4">
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white">
+                    Documentation
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white">
+                    Guides
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white">
+                    API Status
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white">
+                    Blog
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-300 tracking-wider uppercase">
+                Company
+              </h3>
+              <ul className="mt-4 space-y-4">
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white">
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white">
+                    Careers
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white">
+                    Press
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white">
+                    Contact
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-300 tracking-wider uppercase">
+                Legal
+              </h3>
+              <ul className="mt-4 space-y-4">
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white">
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white">
+                    Terms of Service
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-white">
+                    Cookie Policy
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-12 border-t border-gray-700 pt-8">
+            <p className="text-base text-gray-400 text-center">
+              &copy; 2025 Nexa, Inc. All rights reserved.
+            </p>
+            <p className="pb-2  text-center mt-5 text-gray-300 font-bold">
+              &copy;2025 - {new Date().getFullYear()} Made with 💓 by GLtech
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
