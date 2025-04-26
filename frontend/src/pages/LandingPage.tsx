@@ -1,4 +1,3 @@
-import React from "react";
 import { CheckCircle, Clock, Users, Calendar, ArrowRight } from "lucide-react";
 import logo from "../../public/nexa-icon.png";
 import { Link } from "react-router-dom";
