@@ -284,7 +284,7 @@ const CreateTask = () => {
               </div>
             </div>
             <div className="mt-3">
-              <label className="text-xs font-medium">TODO Checklist</label>
+              <label className="text-xs font-medium">Subtasks</label>
               <TodoListInput
                 todolist={taskData.todoChecklist}
                 setTodoList={(value: string[]) =>
