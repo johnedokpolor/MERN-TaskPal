@@ -1,6 +1,7 @@
 import { CheckCircle, Clock, Users, Calendar, ArrowRight } from "lucide-react";
 import logo from "../../public/nexa-icon.png";
 import { Link } from "react-router-dom";
+import desktopView from "../assets/desktop-view.png";
 
 export default function LandingPage() {
   return (
@@ -102,14 +103,12 @@ export default function LandingPage() {
                 </form>
               </div>
             </div>
-            <div className="mt-12 relative sm:max-w-lg lg:mt-0 lg:col-span-6 xl:col-span-7">
-              <div className="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
+            <div className="mt-12 relative sm:max-w-2xl lg:mt-0 lg:col-span-6 xl:col-span-7">
+              <div className="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-full">
                 <img
-                  className="w-full"
-                  src="/api/placeholder/600/400"
+                  className="w-full "
+                  src={desktopView}
                   alt="Screenshot of Nexa dashboard"
-                  width="600"
-                  height="400"
                 />
               </div>
             </div>

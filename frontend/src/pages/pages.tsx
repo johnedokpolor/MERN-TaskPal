@@ -11,6 +11,8 @@ import { default as ManageUsers } from "./Admin/ManageUsers";
 import { default as UserDashboard } from "./User/Dashboard";
 import { default as UserTasks } from "./User/MyTasks";
 import { default as ViewTaskDetails } from "./User/ViewTaskDetails";
+import { default as UserSettings } from "./User/Settings";
+import { default as Settings } from "./Admin/Settings";
 
 export {
   LandingPage,
@@ -26,4 +28,6 @@ export {
   UserDashboard,
   UserTasks,
   ViewTaskDetails,
+  UserSettings,
+  Settings
 };

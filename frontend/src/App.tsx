@@ -13,6 +13,8 @@ import {
   ManageUsers,
   ViewTaskDetails,
   UserTasks,
+  Settings,
+  UserSettings
 } from "./pages/pages";
 import { Toaster } from "react-hot-toast";
 import { ContextStore } from "./store/ContextStore";
@@ -62,11 +64,13 @@ function App() {
         <Route path="/admin/tasks" element={<ManageTasks />} />
         <Route path="/admin/create-task" element={<CreateTask />} />
         <Route path="/admin/users" element={<ManageUsers />} />
+        <Route path="/admin/settings" element={<Settings />} />
 
         {/* User Routes */}
         <Route path="/user/dashboard" element={<UserDashboard />} />
         <Route path="/user/tasks" element={<UserTasks />} />
         <Route path="/user/task-details/:id" element={<ViewTaskDetails />} />
+        <Route path="/user/settings" element={<UserSettings />} />
       </Routes>
       <Toaster
         toastOptions={{

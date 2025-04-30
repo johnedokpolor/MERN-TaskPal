@@ -3,7 +3,11 @@ import { User } from "../../models/user/userModel.js";
 
 // update user details
 export const updateUser = async (req, res) => {
+  console.log(req.body);
   const { name, bio, email, profileImageUrl } = req.body;
+  if (!name || !bio || !email) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
 
   try {
     // find user by using user._id saved in the request
@@ -16,18 +20,12 @@ export const updateUser = async (req, res) => {
         message: "User not found",
       });
     }
-    // Check if email Exists
-    const emailExists = await User.findOne({ email });
-    if (emailExists) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Email Already Exists" });
-    }
+
     // update user details and save to db
-    user.name = name || user.name;
-    user.email = email || user.email;
-    user.bio = bio || user.bio;
-    user.profileImageUrl = profileImageUrl || user.profileImageUrl;
+    user.name = name;
+    user.email = email;
+    user.bio = bio;
+    // user.profileImageUrl = profileImageUrl ;
 
     await user.save();
 
@@ -46,10 +44,10 @@ export const updateUser = async (req, res) => {
 
 // change password
 export const changePassword = async (req, res) => {
-  const { currentPassword, newPassword } = req.body;
+  const { oldPassword, newPassword } = req.body;
   try {
     // check if password and current password is sent in the request
-    if (!currentPassword || !newPassword) {
+    if (!oldPassword || !newPassword) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
@@ -57,7 +55,7 @@ export const changePassword = async (req, res) => {
     const user = await User.findById(req.user._id);
 
     // compare current password with the hashed password in the database
-    const isMatch = await bcryptjs.compare(currentPassword, user.password);
+    const isMatch = await bcryptjs.compare(oldPassword, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid password!" });
     }

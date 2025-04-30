@@ -4,6 +4,7 @@ import {
   SquarePlus,
   Users,
   LogOut,
+  Settings
 } from "lucide-react";
 export const SideMenuUserData = [
   {
@@ -20,6 +21,12 @@ export const SideMenuUserData = [
   },
   {
     id: "03",
+    label: "Settings",
+    icon: Settings,
+    path: "/user/settings",
+  },
+  {
+    id: "04",
     label: "Logout",
     icon: LogOut,
     path: "logout",
@@ -52,6 +59,12 @@ export const SideMenuData = [
   },
   {
     id: "05",
+    label: "Settings",
+    icon: Settings,
+    path: "/admin/settings",
+  },
+  {
+    id: "06",
     label: "Logout",
     icon: LogOut,
     path: "logout",
