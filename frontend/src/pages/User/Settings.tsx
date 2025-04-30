@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { Loader, Trash2 } from "lucide-react";
+import { Loader } from "lucide-react";
 import DashboardLayout from "../../components/layouts/DashboardLayout";
 import { useNavigate } from "react-router-dom";
 
