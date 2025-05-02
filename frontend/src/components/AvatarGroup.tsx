@@ -1,15 +1,15 @@
 import React from "react";
 import { AvatarGroupProps } from "../utils/interfaces";
-import { ContextStore } from "../store/ContextStore";
+// import { ContextStore } from "../store/ContextStore";
 
 const AvatarGroup: React.FC<AvatarGroupProps> = ({ avatars, maxVisible }) => {
-  const { user, admin } = ContextStore();
-  const loggedInUser = user ? user : admin;
-  const firstname = loggedInUser?.name.split(" ")[0];
-  const lastname = loggedInUser?.name.split(" ")[1];
-  const acronym =
-    (firstname?.charAt(0).toUpperCase() ?? "") +
-    (lastname?.charAt(0).toUpperCase() ?? "");
+  // const { user, admin } = ContextStore();
+  // const loggedInUser = user ? user : admin;
+  // const firstname = loggedInUser?.name.split(" ")[0];
+  // const lastname = loggedInUser?.name.split(" ")[1];
+  // const acronym =
+  //   (firstname?.charAt(0).toUpperCase() ?? "") +
+  //   (lastname?.charAt(0).toUpperCase() ?? "");
   console.log(avatars, "avatars");
   return (
     <div className="flex items-center">
