@@ -11,6 +11,10 @@ const SideMenu: React.FC<{ activeMenu: string }> = ({ activeMenu }) => {
   const { logout, user, admin } = ContextStore();
   const loggedInUser = user ? user : admin;
   const firstname = loggedInUser?.name.split(" ")[0];
+  const lastname = loggedInUser?.name.split(" ")[1];
+  const acronym =
+    (firstname?.charAt(0).toUpperCase() ?? "") +
+    (lastname?.charAt(0).toUpperCase() ?? "");
 
   const handleClick = async (route: string) => {
     if (route === "logout") {
@@ -46,12 +50,13 @@ const SideMenu: React.FC<{ activeMenu: string }> = ({ activeMenu }) => {
     <div className="bg-white lg:w-full w-64 ">
       <div className=" h-screen dark:bg-[#1f1f1f]  dark:text-white bg-[#f0f4f994] border-r dark:border-white/20 border-gray-300 ">
         <div className="flex flex-col items-center justify-center mb-7 pt-5">
-          <div className="relative">
-            <img
+          <div className="relative bg-green-700 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold">
+            {acronym}
+            {/* <img
               src={loggedInUser?.profileImageUrl}
               className="size-20 rounded-full"
               alt="Profle Image"
-            />
+            /> */}
           </div>
 
           {loggedInUser?.role === "admin" && (
