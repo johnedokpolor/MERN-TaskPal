@@ -3,7 +3,7 @@ import { Paperclip } from "lucide-react";
 import moment from "moment";
 import { motion } from "motion/react";
 import Progress from "../Progress";
-import AvatarGroup from "../AvatarGroup";
+// import AvatarGroup from "../AvatarGroup";
 import { TaskCardProps } from "../../utils/interfaces";
 const TaskCard: React.FC<TaskCardProps> = ({
   title,
@@ -14,7 +14,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
   createdAt,
   dueDate,
   duration,
-  assignedTo,
+  // assignedTo,
   attachmentCount,
   completedTodoCount,
   todoChecklist,
@@ -117,7 +117,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
           </div>
         </div>
         <div className="flex items-center justify-between mt-3">
-          <AvatarGroup avatars={assignedTo} maxVisible={3} />
+          {/* <AvatarGroup avatars={assignedTo} maxVisible={3} /> */}
           {attachmentCount > 0 && (
             <div className="flex items-center gap-2 bg-green-50 dark:bg-green-100/40 px-2.5 py-1.5 rounded-lg">
               <Paperclip className="text-green-500 size-4" />

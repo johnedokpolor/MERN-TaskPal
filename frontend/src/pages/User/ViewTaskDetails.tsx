@@ -7,7 +7,7 @@ import { Task } from "../../utils/interfaces";
 import axios from "axios";
 import { BASE_URL, TASK_URL } from "../../store/ContextStore";
 import DashboardLayout from "../../components/layouts/DashboardLayout";
-import AvatarGroup from "../../components/AvatarGroup";
+// import AvatarGroup from "../../components/AvatarGroup";
 import ViewTaskDetailsSkeleton from "../../components/Skeletons/ViewTaskDetailsSkeleton";
 
 const ViewTaskDetails = () => {
