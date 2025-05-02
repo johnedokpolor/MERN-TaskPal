@@ -183,7 +183,7 @@ const CreateTask = () => {
               }}
               onClick={changePassword}
               disabled={loading}
-              className="py-1 px-2 bg-green-700 mt-3 text-sm rounded-md cursor-pointer"
+              className="py-1 px-2 bg-green-700 mt-3 text-sm rounded-md text-white cursor-pointer"
             >
               {passloading ? (
                 <Loader size={20} className=" animate-spin mx-auto" />
