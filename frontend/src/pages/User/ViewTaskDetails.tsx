@@ -150,12 +150,12 @@ const ViewTaskDetails = () => {
                       Assigned To
                     </label>
 
-                    <AvatarGroup
+                    {/* <AvatarGroup
                       avatars={task?.assignedTo.map(
                         (user) => user.profileImageUrl
                       )}
                       maxVisible={5}
-                    />
+                    /> */}
                   </div>
                 </div>
                 <div className="mt-2">
