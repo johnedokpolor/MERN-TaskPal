@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TodoListInputProps } from "../../utils/interfaces";
 import { Trash2, Plus } from "lucide-react";
 
@@ -7,6 +7,19 @@ const TodoListInput: React.FC<TodoListInputProps> = ({
   setTodoList,
 }) => {
   const [option, setOption] = useState("");
+  useEffect(() => {
+    // Create a timer to check if the user has stopped typing every 1seconds
+    // If the user stops typing for 1seconds, add the option to the list
+    const timer = setTimeout(() => {
+      console.log("User stopped typing. Final input:", option);
+      if (option.trim()) {
+        setTodoList([...todolist, option.trim()]);
+        setOption("");
+      }
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [option]);
 
   // Function to handle adding an option
   const handleAddOption = () => {
@@ -51,10 +64,6 @@ const TodoListInput: React.FC<TodoListInputProps> = ({
           onChange={({ target }) => setOption(target.value)}
           className="form-input"
         />
-        <button className="card-btn text-nowrap" onClick={handleAddOption}>
-          <Plus className="size-4" />
-          Add
-        </button>
       </div>
     </div>
   );

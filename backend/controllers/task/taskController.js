@@ -1,4 +1,7 @@
-import { sendTaskEmail } from "../../mailtrap/nodemailer.js";
+import {
+  sendCompleteTaskUserEmail,
+  sendTaskEmail,
+} from "../../mailtrap/nodemailer.js";
 import { Task } from "../../models/task/TaskModel.js";
 import moment from "moment";
 
@@ -152,9 +155,9 @@ const createTask = async (req, res) => {
     const admin = taskDetails.createdBy.map((admin) => admin.name);
     const assignedUsers = taskDetails.assignedTo;
     const formatedDate = moment(task.dueDate).format("dddd Do MMM YYYY");
-    // const userEmails = taskEmails.assignedTo.map((user) => user.email);
+    // Send task email to the user
     assignedUsers.map(async (user) => {
-      return await sendTaskEmail(
+      return sendTaskEmail(
         user.email,
         user.name,
         task.title,
@@ -304,7 +307,10 @@ const updateTaskChecklist = async (req, res) => {
   try {
     const { todoChecklist } = req.body;
     const { id } = req.params;
-    const task = await Task.findById(id);
+    const task = await Task.findById(id)
+      .populate("assignedTo", "name email")
+      .populate("createdBy", "name");
+
     if (!task) {
       res.status(404).json({ success: false, message: "Task not found" });
       return;
@@ -333,9 +339,25 @@ const updateTaskChecklist = async (req, res) => {
     task.progress =
       totalTodos > 0 ? Math.round((completedCount / totalTodos) * 100) : 0;
 
+    // Get the admin and the formatted date from the task details
+    const admin = taskDetails.createdBy.map((admin) => admin.name);
+    const formatedDate = moment(task.dueDate).format("dddd Do MMM YYYY");
+
     // Auto-mark all tasks as completed if all todos are checked
     if (task.progress === 100) {
       task.status = "Completed";
+      task.assignedTo.map((user) =>
+        sendCompleteTaskUserEmail(
+          user.email,
+          user.name,
+          task.title,
+          task.description,
+          task.priority,
+          formatedDate,
+          process.env.CLIENT_URL,
+          admin
+        )
+      );
     } else if (task.progress > 0) {
       task.status = "In Progress";
     } else {

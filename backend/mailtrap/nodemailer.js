@@ -7,6 +7,8 @@ import {
   LOGIN_EMAIL_TEMPLATE,
   ASSIGNED_TASK_TEMPLATE,
   TASK_REMINDER_TEMPLATE,
+  LOGOUT_EMAIL_TEMPLATE,
+  COMPLETE_TASK_USER_TEMPLATE,
 } from "./emailTemplates.js";
 
 var transporter = nodemailer.createTransport({
@@ -105,6 +107,24 @@ export const sendLoginEmail = (email, name, loginDate) => {
     }
   });
 };
+export const sendLogoutEmail = (email, name, logoutDate) => {
+  var mailOptions = {
+    from: '"Nexa" johnedokpolor@gmail.com',
+    to: email,
+    subject: "Logout Notification from Nexa",
+    html: LOGOUT_EMAIL_TEMPLATE.replace("{logoutDate}", logoutDate).replace(
+      "{user}",
+      name
+    ),
+  };
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  });
+};
 export const sendTaskEmail = (
   email,
   name,
@@ -124,6 +144,36 @@ export const sendTaskEmail = (
       .replace("{user}", name)
       .replace("{description}", description)
       .replace("{status}", status)
+      .replace("{priority}", priority)
+      .replace("{dueDate}", formatedDate)
+      .replace("{loginURL}", url)
+      .replace("{admin}", admin),
+  };
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  });
+};
+export const sendCompleteTaskUserEmail = (
+  email,
+  name,
+  title,
+  description,
+  priority,
+  formatedDate,
+  url,
+  admin
+) => {
+  var mailOptions = {
+    from: '"Nexa" johnedokpolor@gmail.com',
+    to: email,
+    subject: "Task Notification from Nexa",
+    html: COMPLETE_TASK_USER_TEMPLATE.replace("{title}", title)
+      .replace("{user}", name)
+      .replace("{description}", description)
       .replace("{priority}", priority)
       .replace("{dueDate}", formatedDate)
       .replace("{loginURL}", url)

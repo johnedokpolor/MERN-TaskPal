@@ -10,6 +10,7 @@ interface Props {
   name: string;
   required?: boolean;
   isvisible?: boolean;
+  onKeyDown?: () => void;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   togglepassword?: () => void;
 }

@@ -21,8 +21,8 @@ const Signup = () => {
     adminInviteToken: "",
   });
   const [profilePic, setProfilePic] = useState<string | File>("");
-
   const [visible, setVisible] = useState(false);
+  const [passStrength, setPassStrength] = useState(false);
 
   // Handles the change by updating the user state
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -146,6 +146,7 @@ const Signup = () => {
                 value={user.password}
                 name="password"
                 onChange={handleChange}
+                onKeyDown={() => setPassStrength(true)}
                 required
               />
               <Input
@@ -163,7 +164,7 @@ const Signup = () => {
               </p>
             )}
             {/* Password strength meter */}
-            <PasswordStrengthMeter password={user.password} />
+            {passStrength && <PasswordStrengthMeter password={user.password} />}
             <Button text="Create Account" />
           </form>
         </div>

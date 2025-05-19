@@ -18,7 +18,7 @@ const router = express.Router();
 // All the Authentication Routes
 router.post("/login", login);
 router.post("/signup", signup);
-router.post("/logout", logout);
+router.post("/logout", protect, logout);
 router.post("/verify-email", verifyEmail);
 router.post("/send-token", protect, sendToken);
 router.post("/forgot-password", forgotPassword);

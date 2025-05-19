@@ -90,7 +90,7 @@ export const PASSWORD_RESET_SUCCESS_TEMPLATE = `
 </html>
 `;
 export const LOGIN_EMAIL_TEMPLATE = `
-<!DOCTYPE htm l>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -110,6 +110,42 @@ export const LOGIN_EMAIL_TEMPLATE = `
       </div>
     </div>
     <p>If you did not login to your account, please contact our support Team. immediately.</p>
+    <p>For security reasons, we recommend that you:</p>
+    <ul>
+      <li>Use a strong, unique password.</li>
+      <li>Enable two-factor authentication if available.</li>
+      <li>Avoid sharing your password with others.</li>
+    </ul>
+    <p>Thank you for helping us keep your account secure.</p>
+    <p>Best regards,<br>Nexa Team.</p>
+  </div>
+  <div style="text-align: center; margin-top: 20px; color: #888; font-size: 0.8em;">
+    <p>This is an automated message, please do not reply to this email.</p>
+  </div>
+</body>
+</html>
+`;
+export const LOGOUT_EMAIL_TEMPLATE = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logout Notification</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto;">
+  <div style="background: linear-gradient(to right, #4CAF50, #45a049); padding: 20px; text-align: center;">
+    <h1 style="color: white; margin: 0;">Logout Notification</h1>
+  </div>
+  <div style="background-color: #f9f9f9; padding: 20px; border-radius: 0 0 5px 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+    <p>Hello {user}</p>
+    <p>You just logged out of your account at {logoutDate}</p>
+    <div style="text-align: center; margin: 30px 0;">
+      <div style="background-color: #4CAF50; color: white; width: 50px; height: 50px; line-height: 50px; border-radius: 50%; display: inline-block; font-size: 30px;">
+        ✓
+      </div>
+    </div>
+    <p>If you did not logout of your account, please contact our support team immediately.</p>
     <p>For security reasons, we recommend that you:</p>
     <ul>
       <li>Use a strong, unique password.</li>
@@ -210,6 +246,79 @@ export const ASSIGNED_TASK_TEMPLATE = `
             font-weight: bold;
           "
           >View Task</a
+        >
+      </div>
+
+      <p>Best regards,<br />Nexa Team.</p>
+    </div>
+    <div
+      style="
+        text-align: center;
+        margin-top: 20px;
+        color: #888;
+        font-size: 0.8em;
+      "
+    >
+      <p>This is an automated message, please do not reply to this email.</p>
+    </div>
+  </body>
+</html>
+`;
+export const COMPLETE_TASK_USER_TEMPLATE = `
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Completed</title>
+  </head>
+  <body
+    style="
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 100%;
+      margin: 0 auto;
+    "
+  >
+    <div
+      style="
+        background: linear-gradient(to right, #4caf50, #45a049);
+        padding: 20px;
+        text-align: center;
+      "
+    >
+      <h1 style="color: white; margin: 0">Task Notification</h1>
+    </div>
+    <div
+      style="
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 0 0 5px 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      "
+    >
+      <p>Hello, {user}</p>
+      <p>We wanted to let you know that the task assigned to you by {admin} with the following details has been completed:</p>
+      <ul>
+        <li>Title: {title}</li>
+        <li>Description: {description}</li>
+        <li>Priority: {priority}</li>
+        <li>Due Date: {dueDate}</li>
+      </ul>
+      <p>You can view more details by visiting your dashboard.</p>
+      <div style="text-align: center; margin: 30px 0">
+        <a
+          href="{loginURL}"
+          style="
+            background-color: #4caf50;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+          "
+          >Visit Dashboard</a
         >
       </div>
 

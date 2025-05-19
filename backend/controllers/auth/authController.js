@@ -8,6 +8,7 @@ import {
   sendVerificationEmail,
   sendWelcomeEmail,
   sendLoginEmail,
+  sendLogoutEmail,
 } from "../../mailtrap/nodemailer.js";
 import { formatDate } from "../../utils/date.js";
 // import {
@@ -192,7 +193,7 @@ export const login = async (req, res) => {
     user.lastLoginDate = lastLoginDate;
 
     // send login email to user
-    await sendLoginEmail(user.email, user.name, lastLoginDate);
+    sendLoginEmail(user.email, user.name, lastLoginDate);
 
     // save user to db
     await user.save();
@@ -213,6 +214,12 @@ export const login = async (req, res) => {
 
 // logout
 export const logout = async (req, res) => {
+  // Check if user is authenticated
+  const user = await User.findById(req.user._id).select("-password");
+
+  const lastLoginDate = formatDate(Date.now());
+  sendLogoutEmail(user.email, user.name, lastLoginDate);
+
   // Clears the cookie and logs out the user
   res.clearCookie("token", {
     httpOnly: true, // Ensure the cookie is not accessible via JavaScript
