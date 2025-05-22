@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { TodoListInputProps } from "../../utils/interfaces";
-import { Trash2, Plus } from "lucide-react";
+import { Trash2 } from "lucide-react";
 
 const TodoListInput: React.FC<TodoListInputProps> = ({
   todolist,
@@ -22,12 +22,7 @@ const TodoListInput: React.FC<TodoListInputProps> = ({
   }, [option]);
 
   // Function to handle adding an option
-  const handleAddOption = () => {
-    if (option.trim()) {
-      setTodoList([...todolist, option.trim()]);
-      setOption("");
-    }
-  };
+
   console.log(todolist);
   // Function to handle deleting an option
   const handleDeleteOption = (index: number) => {

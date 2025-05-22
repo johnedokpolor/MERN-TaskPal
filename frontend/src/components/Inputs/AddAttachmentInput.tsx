@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Trash2, Plus, Link2 } from "lucide-react";
+import { Trash2, Link2 } from "lucide-react";
 import { AddAttachmentInputProps } from "../../utils/interfaces";
 
 const AddAttachmentInput = ({
