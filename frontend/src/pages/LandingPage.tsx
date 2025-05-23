@@ -23,7 +23,7 @@ export default function LandingPage() {
       url: "#features",
     },
     {
-      name: "Princing",
+      name: "Pricing",
       url: "#pricing",
     },
     {
@@ -115,7 +115,7 @@ export default function LandingPage() {
                 x: 60,
                 transition: { duration: 1, delay: 0 },
               }}
-              className=" h-screen z-50 w-1/2 fixed right-0 dark:bg-black  dark:text-white bg-gray-50 border-r dark:border-white/20 border-gray-300 "
+              className=" h-screen z-50 w-[80%] fixed right-0 dark:bg-black  dark:text-white bg-gray-50 border-r dark:border-white/20 border-gray-300 "
             >
               <div className="flex flex-col  mb-7 pt-5">
                 {navLinks.map((link) => (
