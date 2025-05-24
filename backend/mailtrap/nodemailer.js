@@ -170,7 +170,7 @@ export const sendCompleteTaskUserEmail = (
   var mailOptions = {
     from: '"Nexa" johnedokpolor@gmail.com',
     to: email,
-    subject: "Task Notification from Nexa",
+    subject: "Task Completed from Nexa",
     html: COMPLETE_TASK_USER_TEMPLATE.replace("{title}", title)
       .replace("{user}", name)
       .replace("{description}", description)

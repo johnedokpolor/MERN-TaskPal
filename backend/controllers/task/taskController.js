@@ -273,7 +273,7 @@ const updateTaskStatus = async (req, res) => {
 
     // Checks if user is assigned to task and is admin using the .some() method
     const isAssigned = task.assignedTo.some(
-      (userId) => userId.toString() === req.user._id.toString()
+      (user) => user._Id.toString() === req.user._id.toString()
     );
     if (!isAssigned && req.user.role !== "admin") {
       return res
@@ -301,7 +301,7 @@ const updateTaskStatus = async (req, res) => {
 };
 
 // @desc   Update task checklist
-// @route  GET /api/tasks/todo
+// @route  PUT /api/tasks/todo
 // @access Private
 const updateTaskChecklist = async (req, res) => {
   try {
@@ -317,16 +317,20 @@ const updateTaskChecklist = async (req, res) => {
     }
     if (!todoChecklist) {
       res
-        .status(404)
+        .status(400)
         .json({ success: false, message: "Provide the todoChecklist array!" });
       return;
     }
 
     // Checks if user is assigned to task and is admin
-    if (!task.assignedTo.includes(req.user._id) && req.user.role !== "admin") {
+
+    const isAssigned = task.assignedTo.some(
+      (user) => user._id.toString() === req.user._id.toString()
+    );
+    if (!isAssigned && req.user.role !== "admin") {
       return res.status(403).json({
         success: false,
-        message: "Not Authorized to upadate checklist",
+        message: "Not Authorized to update checklist",
       });
     }
     task.todoChecklist = todoChecklist; // Replace with updated checklist
@@ -340,7 +344,8 @@ const updateTaskChecklist = async (req, res) => {
       totalTodos > 0 ? Math.round((completedCount / totalTodos) * 100) : 0;
 
     // Get the admin and the formatted date from the task details
-    const admin = taskDetails.createdBy.map((admin) => admin.name);
+    const admin = task.createdBy.map((admin) => admin.name);
+    console.log(admin);
     const formatedDate = moment(task.dueDate).format("dddd Do MMM YYYY");
 
     // Auto-mark all tasks as completed if all todos are checked

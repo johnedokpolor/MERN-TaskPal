@@ -288,7 +288,7 @@ export const COMPLETE_TASK_USER_TEMPLATE = `
         text-align: center;
       "
     >
-      <h1 style="color: white; margin: 0">Task Notification</h1>
+      <h1 style="color: white; margin: 0">Task Completed</h1>
     </div>
     <div
       style="
